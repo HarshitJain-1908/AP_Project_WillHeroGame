@@ -1,0 +1,10 @@
+public class Island extends GameObjects{
+    private Coordinates endCoord;
+
+    public Island(int id, Coordinates c, Coordinates e){
+        super(c,id);
+        endCoord=e;
+
+
+    }
+}
