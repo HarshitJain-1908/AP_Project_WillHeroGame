@@ -8,6 +8,7 @@ public class Boss extends GreenOrc {
     @Override
     public void killHero(){
 
+        //this function will kill the player
     }
     public void upDatePower(int p){
 
