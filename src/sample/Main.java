@@ -8,9 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Main extends Application {
     @Override
     public void start(Stage stage) {
