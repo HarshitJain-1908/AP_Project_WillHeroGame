@@ -32,10 +32,26 @@ public class Game implements Serializable {
     private void placeGameObjects(){
         //placing islands
         Coordinates s,e;
-        s=new Coordinates(0,0);
-        e=new Coordinates(2,0);
-        Island isd=new Island(1,s,e);
-        island.add(isd);
+//        s=new Coordinates(0,0);
+//        e=new Coordinates(2,0);
+        int loc = 0;
+        for (int i=0;i<20;i++){
+            if (loc%2==0){
+                s = new Coordinates(loc, 0);
+                e = new Coordinates(loc+2, 0);
+                Island isd = new Island(i+1, s, e);
+                island.add(isd);
+            }
+            else if (loc%2==1){
+                s = new Coordinates(loc, 0);
+                e = new Coordinates(loc+1, 0);
+                Island isd = new Island(i+1, s, e);
+                island.add(isd);
+            }
+            loc += 3;
+        }
+
+
         //s.setX();
 
     }
