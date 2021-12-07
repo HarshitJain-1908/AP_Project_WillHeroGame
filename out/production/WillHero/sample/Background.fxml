@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="350.0" fitWidth="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../island.jpeg" />
+         </image>
+      </ImageView>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="myHero" fitHeight="109.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" translateX="-170.0" translateY="-85.0">
+               <image>
+                  <Image url="@../Hero.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>
