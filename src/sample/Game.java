@@ -32,8 +32,6 @@ public class Game implements Serializable {
     private void placeGameObjects(){
         //placing islands
         Coordinates s,e;
-//        s=new Coordinates(0,0);
-//        e=new Coordinates(2,0);
         int loc = 0;
         for (int i=0;i<20;i++){
             if (loc%2==0){
@@ -51,6 +49,31 @@ public class Game implements Serializable {
             loc += 3;
         }
 
+        //adding obstacle - TNT
+        Coordinates s1, s2;
+        s1 = new Coordinates(12, 0);
+        s2 = new Coordinates(36, 0);
+        Obstacle obst1 = new Obstacle(21, s1);
+        Obstacle obst2 = new Obstacle(22, s2);
+
+        //adding Orcs - Green
+
+        //adding Orcs - Red
+
+        //adding Boss
+
+        //adding chests - not complete yet - needs correction
+        int loc_chest = 6;
+        for (int i=0;i<2;i++){
+            s = new Coordinates(loc_chest, 0);
+            CoinChest c_chest = new CoinChest(i+21, s, "coin", 50);
+            loc_chest += 18; //second coin chest at 24
+        }
+
+        loc_chest = 18;
+        for (int i=0;i<3;i++){
+            //WeaponChest w_chest = new WeaponChest(loc_chest, s, "weapon");
+        }
 
         //s.setX();
 
