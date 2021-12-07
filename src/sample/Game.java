@@ -8,9 +8,8 @@ public class Game implements Serializable {
     private LinkedList<GameObjects> gameObjects;
     private LinkedList<Island> island;
     private LinkedList<Orc> orc;
-    private LinkedList<Obstacle> o;
-    private LinkedList<WeaponChest> w;
-    private LinkedList<CoinChest> c;
+    private LinkedList<Obstacle> obstacles;
+    private LinkedList<Treasure> chests;
 
     private static int highScore;
     private int gid;
@@ -22,10 +21,9 @@ public class Game implements Serializable {
         hero = new Player("mickey");
         gameObjects = new LinkedList<>();
         island=new LinkedList<>();
-        orc=new LinkedList<>();
-        o=new LinkedList<>();
-        w=new LinkedList<>();
-        c=new LinkedList<>();
+        orc=new LinkedList<>(); //all orcs including boss
+        obstacles=new LinkedList<>(); //obstacles
+        chests=new LinkedList<>(); //chests
         placeGameObjects();
 
     }
@@ -54,9 +52,14 @@ public class Game implements Serializable {
         s1 = new Coordinates(12, 0);
         s2 = new Coordinates(36, 0);
         Obstacle obst1 = new Obstacle(21, s1);
+        obstacles.add(obst1);
         Obstacle obst2 = new Obstacle(22, s2);
+        obstacles.add(obst2);
 
         //adding Orcs - Green
+        for (int i=0;i<6;i++){
+
+        }
 
         //adding Orcs - Red
 
@@ -66,7 +69,7 @@ public class Game implements Serializable {
         int loc_chest = 6;
         for (int i=0;i<2;i++){
             s = new Coordinates(loc_chest, 0);
-            CoinChest c_chest = new CoinChest(i+21, s, "coin", 50);
+            CoinChest c_chest = new CoinChest(i+21, s, 50);
             loc_chest += 18; //second coin chest at 24
         }
 
