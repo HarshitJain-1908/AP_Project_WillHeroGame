@@ -1,7 +1,26 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 public class Game implements Serializable {
     private Player hero;
@@ -15,9 +34,11 @@ public class Game implements Serializable {
     private int gid;
     private static long serialVersionUID;
 
-    public Game(){
-        //System.out.println("Enter the name: ");
 
+
+    public Game(){
+        System.out.println("Enter the name: ");
+        System.out.println("hello");
         hero = new Player("mickey");
         gameObjects = new LinkedList<>();
         island=new LinkedList<>();
@@ -136,5 +157,10 @@ public class Game implements Serializable {
     }
     public void deserialize(){
     }
+
+
+
+
+
 }
 

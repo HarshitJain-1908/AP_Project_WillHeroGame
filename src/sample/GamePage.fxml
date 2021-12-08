@@ -13,6 +13,6 @@
          </image>
       </ImageView>
       <Button fx:id="playbutton" layoutX="172.0" layoutY="375.0" mnemonicParsing="false" onAction="#play" prefHeight="42.0" prefWidth="67.0" text="Play" />
-      <Button fx:id="pausebutton" layoutY="30.0" mnemonicParsing="false" onAction="#showPauseMenu" prefHeight="32.0" prefWidth="38.0" text="| |" />
+      <Button fx:id="pausebutton" layoutY="30.0" mnemonicParsing="false" onAction="#pauseGame" prefHeight="32.0" prefWidth="38.0" text="| |" />
    </children>
 </AnchorPane>

@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
 public class Player {
     private int numberOfMoves;
     private final int jumpHeight;
@@ -9,6 +12,9 @@ public class Player {
     private Coordinates coord;
     private String name;
     private Game game;
+
+    private ImageView move;
+
 
     public Player(String s) {
         jumpHeight = 1;
@@ -26,7 +32,6 @@ public class Player {
     public void moveForward(){
 
     }
-
     public String getName() {
         return name;
     }

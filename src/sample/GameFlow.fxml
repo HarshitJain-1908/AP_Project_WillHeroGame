@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
-      <ImageView fx:id="myHero" fitHeight="64.0" fitWidth="74.0" layoutX="93.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="484.0" fitWidth="421.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Hero.jpeg" />
+            <Image url="@../6105788d-9ca2-4813-9381-43426c3cfba5.jpg" />
          </image>
       </ImageView>
-      <StackPane layoutY="169.0" prefHeight="150.0" prefWidth="200.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="196.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../island.jpeg" />
-         </image>
-      </ImageView>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="myhero" fitHeight="68.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" translateX="-160.0" translateY="-103.0">
+               <image>
+                  <Image url="@../hero.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="move" fitHeight="48.0" fitWidth="53.0" onMouseClicked="#moveforward" pickOnBounds="true" preserveRatio="true" translateX="170.0" translateY="160.0">
+               <image>
+                  <Image url="@../rightmove.jpeg" />
+               </image>
+            </ImageView>
+            <Label text="Tap" translateX="170.0" translateY="200.0" />
+         </children>
+      </StackPane>
    </children>
-</AnchorPane>
+</StackPane>
