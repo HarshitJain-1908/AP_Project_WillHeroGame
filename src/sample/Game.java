@@ -39,7 +39,7 @@ public class Game implements Serializable {
                 Island isd = new Island(i+1, s, e);
                 island.add(isd);
             }
-            else if (loc%2==1 && loc%9==0){
+            else if (loc%2==1 && loc%9==0){ //moving islands at 9, 27, 45
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+1, 0);
                 MovingIsland isd = new MovingIsland(i+1, s, e);
@@ -122,6 +122,7 @@ public class Game implements Serializable {
         Coordinates s0;
         s0 = new Coordinates(58, 0);
         Boss boss = new Boss(52, s0, "boss", 10, 70, 100);
+        orc.add(boss);
 
         //s.setX();
 
