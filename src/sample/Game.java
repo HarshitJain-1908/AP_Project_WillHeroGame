@@ -49,7 +49,7 @@ public class Game implements Serializable {
 
     }
     private void placeGameObjects(){
-        //placing islands 22 islands in total
+        //placing islands - 22 islands in total
         Coordinates s,e;
         int loc = 0;
         for (int i=0;i<20;i++){
@@ -59,7 +59,7 @@ public class Game implements Serializable {
                 Island isd = new Island(i+1, s, e);
                 island.add(isd);
             }
-            else if (loc%2==1 && loc%9==0){
+            else if (loc%2==1 && loc%9==0){ //3 moving islands
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+1, 0);
                 MovingIsland isd = new MovingIsland(i+1, s, e);
@@ -69,6 +69,7 @@ public class Game implements Serializable {
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+1, 0);
                 Island isd = new Island(i+1, s, e);
+                island.add(isd);
                 }
             loc += 3;
         }
