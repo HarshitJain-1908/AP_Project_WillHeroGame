@@ -143,6 +143,7 @@ public class Game implements Serializable {
         Coordinates s0;
         s0 = new Coordinates(58, 0);
         Boss boss = new Boss(52, s0, "boss", 10, 70, 100);
+        orc.add(boss);
 
 
         //s.setX();
