@@ -20,8 +20,7 @@ public class Player {
         jumpHeight = 1;
         moveLength = 1;
         coins = 0;
-        coord.setX(0);
-        coord.setY(0);
+        coord=new Coordinates(0,0);
         name=s;
         numberOfMoves=0;
         h=new Helmet();
