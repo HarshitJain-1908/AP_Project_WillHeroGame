@@ -155,8 +155,9 @@ public class Main extends Application implements Initializable {
     public void restart(ActionEvent e){
 
     }
-    public void resume(ActionEvent e){
-
+    public void resume(ActionEvent e) throws IOException {
+        //MouseEvent e1=new MouseEvent();
+        //switchToGameScreen(e1);
     }
 
     public void save(ActionEvent e){
