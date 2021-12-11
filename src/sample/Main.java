@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,9 +51,11 @@ public class Main extends Application implements Initializable {
     }
 
     @FXML
-    private ImageView startbutton, newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon, playbutton, pausebutton, burst, bomb, island, island3, myhero, myBoss, mycoin, myRorc, myGorc;
+    private ImageView  startbutton, playbutton, pausebutton, burst, bomb, island, island3, myhero, myBoss, mycoin, myRorc, myGorc;
     @FXML
     Label score;
+    @FXML
+    Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon;
     //AnchorPane root;
     Group gp=new Group();
 
@@ -69,7 +72,7 @@ public class Main extends Application implements Initializable {
 //        stage.setScene(scene);
 //        stage.show();
 //    }
-    public void playGame(MouseEvent event) throws IOException {
+    public void playGame(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("heroname.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -94,7 +97,7 @@ public class Main extends Application implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void startNewGame(MouseEvent e) throws IOException {
+    public void startNewGame(ActionEvent e) throws IOException {
         System.out.println("Game started");
         playGame(e);
        //check();
@@ -148,17 +151,17 @@ public class Main extends Application implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void restart(MouseEvent e){
+    public void restart(ActionEvent e){
 
     }
-    public void resume(MouseEvent e){
+    public void resume(ActionEvent e){
 
     }
 
-    public void save(MouseEvent e){
+    public void save(ActionEvent e){
 
     }
-    public void exit(MouseEvent e){
+    public void exit(ActionEvent e){
 
     }
     public void play(MouseEvent e) throws IOException {
