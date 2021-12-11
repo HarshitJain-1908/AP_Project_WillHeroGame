@@ -52,27 +52,14 @@ public class Main extends Application implements Initializable {
 
 
     @FXML
-    private ImageView  startbutton, playbutton, pausebutton, burst, bomb, island, island3, myhero, myBoss, mycoin, myRorc, myGorc;
+    private ImageView  startbutton, playbutton, pausebutton, burst, bomb, island, island2, island3, open_chest, c_chest, island4, myhero, myBoss, mycoin, myRorc, gOrc;
     @FXML
-    Label score;
+    Label score, noOfCoins;
+    TranslateTransition translate2=new TranslateTransition();
     @FXML
     Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon, gameinstr, exitinstr;
-    //AnchorPane root;
-    Group gp=new Group();
 
-
-    int loc=0;
-//    public void clickOnLoad(ActionEvent e) throws IOException {
-//        switchToHomepage(e);
-//    }
-
-//    public void switchToHomepage(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+    private int loc=0, coins=0;
     public void playGame(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("heroname.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -135,27 +122,24 @@ public class Main extends Application implements Initializable {
         stage.show();
     }
     //Parent root;
-    ImageView island2;
-    TranslateTransition translate2=new TranslateTransition();
+
     public void switchToGameScreen(MouseEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("gameScene.fxml"));
+        StackPane pane=(StackPane)root;
         Image icon = new Image("island.png");
         island2=new ImageView(icon);
-        StackPane pane=(StackPane)root;
         island2.setFitWidth(314);
         island2.setFitHeight(260);
-        //island2.setX(1200);
-        island2.setTranslateX(120);
+        island2.setTranslateX(520);
         island2.setTranslateY(95);
         pane.getChildren().add(island2);
-        //TranslateTransition translate2 = new TranslateTransition();
         translate2.setNode(island2);
+        System.out.println(island2.getTranslateX()+" "+island2.getTranslateY()+" "+island2.getX());
         translate2.setDuration(Duration.millis(3000));
         translate2.setByY(80);
         translate2.setCycleCount(TranslateTransition.INDEFINITE);
         translate2.setAutoReverse(true);
         translate2.play();
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -201,77 +185,110 @@ public class Main extends Application implements Initializable {
     public void moveforward(MouseEvent e) throws IOException {
 
         loc++;
+        score.setText(Integer.toString(loc));
+        System.out.println(score);
+//        if(loc==1){
+//            Image icon = new Image("island.png");
+//            island2=new ImageView(icon);
+//            island2.setFitWidth(314);
+//            island2.setFitHeight(260);
+//            island2.setTranslateX(120);
+//            island2.setTranslateY(95);
+//        }
         System.out.println("Move");
         TranslateTransition translate = new TranslateTransition();
         TranslateTransition translate1 = new TranslateTransition();
-        TranslateTransition translate2 = new TranslateTransition();
         TranslateTransition translate3 = new TranslateTransition();
         TranslateTransition translate4 = new TranslateTransition();
         TranslateTransition translate5 = new TranslateTransition();
         TranslateTransition translate6 = new TranslateTransition();
         TranslateTransition translate7 = new TranslateTransition();
-        Image icon = new Image("island.png");
-        island2=new ImageView(icon);
+        TranslateTransition translate8 = new TranslateTransition();
+        TranslateTransition translate9 = new TranslateTransition();
         translate.setNode(myhero);
         translate1.setNode(island);
+
+        Image icon = new Image("island.png");
+        island2=new ImageView(icon);
+        island2.setFitWidth(314);
+        island2.setFitHeight(250);
+        island2.setTranslateX(520);
+        island2.setTranslateY(95);
+        System.out.println(island.getTranslateX()+" "+island.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
+
+        System.out.println(island.getTranslateX()+" "+island.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
+        translate2.setNode(island2);
+        translate2.setDuration(Duration.millis(3000));
+        translate2.setByY(80);
+        translate2.setCycleCount(TranslateTransition.INDEFINITE);
+        translate2.setAutoReverse(true);
         translate2.setNode(island2);
         //translate3.setNode(move);
-        translate4.setNode(score);
+        //translate4.setNode(score);
         translate5.setNode(island3);
-        translate6.setNode(bomb);
-        translate7.setNode(burst);
-        //score.setText((String)(loc));
+        translate6.setNode(island4);
+        translate7.setNode(c_chest);
+        //translate8.setNode(score);
+        translate9.setNode(open_chest);
+
         translate.setDuration(Duration.millis(150));
         translate1.setDuration(Duration.millis(300));
         translate2.setDuration(Duration.millis(300));
         translate5.setDuration(Duration.millis(300));
         translate6.setDuration(Duration.millis(300));
-        translate3.setDuration(Duration.millis(300));
+       // translate3.setDuration(Duration.millis(300));
         translate7.setDuration(Duration.millis(300));
+        //translate8.setDuration(Duration.millis(300));
+        translate9.setDuration(Duration.millis(300));
+
         translate.setByX(50);
-        //translate3.setByX(57);
         translate1.setByX(-57);
         translate2.setByX(-57);
         translate5.setByX(-57);
         translate6.setByX(-57);
         translate7.setByX(-57);
-        //translate2.setByY(10);
+        //translate8.setByX(-57);
+        translate9.setByX(-57);
         myhero.setX(myhero.getX() + 1);
         island.setX(-5);
         System.out.println(island+" "+island2);
         island2.setX(-5);
-        System.out.println(island.getX()+" "+island2.getX());
+        //island2.setTranslateX(island2.getTranslateX()-57);
+        System.out.println(island.getTranslateX()+" "+island.getTranslateY()+" "+island.getX()+" "+island2.getX()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
         island3.setX(-5);
-        bomb.setX(-5);
-        burst.setX(-15);
-        if (myhero.getX() == 3) {
-//            System.out.println("ok" + myhero.getX()+" "+translate.getByX());
-//            island.setX(-5);
-//            island2.setX(-5);
-//            island3.setX(-5);
-//            bomb.setX(-5);
-//            burst.setX(-15);
-            System.out.println("game over");
-            translate.setDuration(Duration.millis(800));
-            translate.setByY(translate.getToY()+100);
-            translate.setAutoReverse(false);
-            myhero.setY(-10);
-            translate.play();
-            //overgame();
-//            Label l=new Label();
-//            l.setText("GAME OVER");
-//            l.setTranslateX(100);
-//            root.getChildrenUnmodifiable().add(l);
+        island4.setX(-5);
+        c_chest.setX(-5);
+        open_chest.setX(-5);
 
-        }
+
+        //score.setX(-5);
+//        if (myhero.getX() == 3) {
+////            System.out.println("ok" + myhero.getX()+" "+translate.getByX());
+////            island.setX(-5);
+////            island2.setX(-5);
+////            island3.setX(-5);
+////            bomb.setX(-5);
+////            burst.setX(-15);
+//            System.out.println("game over");
+//            translate.setDuration(Duration.millis(800));
+//            translate.setByY(translate.getToY()+100);
+//            translate.setAutoReverse(false);
+//            myhero.setY(-10);
+//            translate.play();
+//            //overgame();
+////            Label l=new Label();
+////            l.setText("GAME OVER");
+////            l.setTranslateX(100);
+////            root.getChildrenUnmodifiable().add(l);
+//
+//        }
         if(myhero.getX()==8){
-            bomb.setOpacity(0.7);
-            translate7.setDuration(Duration.millis(0));
-            //translate7.setByX(translate6.getByX());
-            translate7.setToX(translate6.getByX());
-            System.out.println(translate6.getByX()+" "+bomb.getX());
-            burst.setX(bomb.getX());
-            translate7.play();
+            //bomb.setOpacity(0.7);
+//            translate7.setDuration(Duration.millis(0));
+//            //translate7.setByX(translate6.getByX());
+//            translate7.setToX(translate6.getByX());
+//            System.out.println(translate6.getByX()+" "+bomb.getX());
+//            translate7.play();
         }
         translate.play();
         translate1.play();
@@ -281,13 +298,17 @@ public class Main extends Application implements Initializable {
         translate5.play();
         translate6.play();
         translate7.play();
+        translate9.play();
+        translate.play();
+        System.out.println(myhero.getX());
+        if (myhero.getX() == 5) {
+            c_chest.setOpacity(0);
+            open_chest.setOpacity(1);
+            coins+=5;
+            noOfCoins.setText(Integer.toString(coins));
+            System.out.println(noOfCoins);
 
-//        if (myhero.getX() == 3) {
-//            System.out.println("Game over");
-//            translate.setDuration(Duration.millis(300));
-//            translate.setByY(1500);
-//            translate.play();
-//        }
+        }
     }
     public void overgame() throws IOException {
         Parent root1 = FXMLLoader.load(getClass().getResource("overgame.fxml"));

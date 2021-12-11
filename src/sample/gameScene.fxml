@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
@@ -31,19 +33,44 @@
             <Image url="@../rightmove.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="island3" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="550.0" translateY="175.0">
+      <ImageView fx:id="island3" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="110.0" translateY="175.0">
          <image>
             <Image url="@../island.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="bomb" fitHeight="108.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" translateX="550.0" translateY="10.0">
+      <Label fx:id="score" text="0" translateY="-250.0">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="41.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" translateX="-200.0" translateY="-250.0">
          <image>
-            <Image url="@../tnt.jpeg" />
+            <Image url="@../Coin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="burst" fitHeight="254.0" fitWidth="274.0" pickOnBounds="true" preserveRatio="true" translateX="900.0" translateY="-30.0">
+      <Label fx:id="noOfCoins" text="0" translateX="-240.0" translateY="-250.0">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="c_chest" fitHeight="108.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" translateX="120.0" translateY="27.0">
          <image>
-            <Image url="@../bursting.jpeg" />
+            <Image url="@../ChestClosed.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="island4" fitHeight="260.0" fitWidth="314.0" layoutX="302.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" translateX="500.0" translateY="175.0">
+         <image>
+            <Image url="@../island.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="gOrc" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="520.0" translateY="-10.0">
+         <image>
+            <Image url="@../greenOrc.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="open_chest" fitHeight="80.0" fitWidth="150.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="115.0" translateY="27.0">
+         <image>
+            <Image url="@../ChestOpen.png" />
          </image>
       </ImageView>
    </children>

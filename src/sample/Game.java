@@ -37,8 +37,8 @@ public class Game implements Serializable {
 
 
     public Game(){
-        System.out.println("Enter the name: ");
-        System.out.println("hello");
+//        System.out.println("Enter the name: ");
+//        System.out.println("hello");
         hero = new Player("mickey");
         gameObjects = new LinkedList<>();
         island=new LinkedList<>();
