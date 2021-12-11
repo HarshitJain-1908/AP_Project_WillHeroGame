@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
@@ -11,25 +13,45 @@
             <Image url="@../LoadingPage.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="highscorebutton" fitHeight="110.0" fitWidth="150.0" layoutX="130.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="63.0" fitWidth="86.0" layoutX="11.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../highscore.jpeg" />
+            <Image url="@../high_score.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="loadbutton" fitHeight="119.0" fitWidth="124.0" layoutX="123.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="73.0" fitWidth="69.0" layoutX="18.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../load.jpeg" />
+            <Image url="@../load_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="newgamebutton" fitHeight="110.0" fitWidth="151.0" layoutX="123.0" layoutY="186.0" onMouseClicked="#startNewGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="60.0" layoutX="23.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../newgame.jpeg" />
+            <Image url="@../new_game.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitbutton" fitHeight="150.0" fitWidth="124.0" layoutX="134.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="51.0" layoutX="27.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../exitdoor.jpeg" />
+            <Image url="@../exit_icon.png" />
          </image>
       </ImageView>
+      <Button fx:id="newgamebutton" layoutX="95.0" layoutY="191.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="NEW GAME">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="loadbutton" layoutX="95.0" layoutY="260.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="LOAD GAME">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="highscorebutton" layoutX="95.0" layoutY="336.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="HIGH SCORE">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitbutton" layoutX="95.0" layoutY="409.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="EXIT">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="23.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
