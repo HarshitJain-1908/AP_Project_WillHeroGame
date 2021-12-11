@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
@@ -14,10 +14,13 @@
             <Image url="@../background.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="242.0" layoutY="200.0" text="GAME OVER" textFill="#ea1616">
+      <Label alignment="CENTER" layoutX="239.0" layoutY="231.0" text="GAME OVER" textAlignment="JUSTIFY" textFill="#ea1616">
          <font>
-            <Font size="76.0" />
+            <Font name="HP Simplified Jpan Regular" size="96.0" />
          </font>
+         <effect>
+            <Glow level="0.28" />
+         </effect>
       </Label>
    </children>
 </AnchorPane>
