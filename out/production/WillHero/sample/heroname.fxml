@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+   <children>
+      <ImageView fitHeight="698.0" fitWidth="569.0" layoutY="-5.0" opacity="0.48" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../HomePage.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="36.0" layoutY="262.0" text="Enter player name: ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField layoutX="248.0" layoutY="261.0" onKeyTyped="#entername" promptText="--name--">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="startbutton" fitHeight="75.0" fitWidth="200.0" layoutX="178.0" layoutY="459.0" onMouseClicked="#startGame" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../start.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
