@@ -25,7 +25,7 @@
                   <Image url="@../save_icon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="exiticon" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" translateX="-120.0" translateY="30.0">
+            <ImageView fitHeight="46.0" fitWidth="47.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" translateX="-120.0" translateY="30.0">
                <image>
                   <Image url="@../exit_icon.png" />
                </image>
