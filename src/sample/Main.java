@@ -56,7 +56,7 @@ public class Main extends Application implements Initializable {
     @FXML
     Label score;
     @FXML
-    Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon;
+    Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon, gameinstr, exitinstr;
     //AnchorPane root;
     Group gp=new Group();
 
@@ -80,6 +80,7 @@ public class Main extends Application implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
     public void entername(KeyEvent e){
        // System.out.println("name entered");
     }
@@ -102,6 +103,14 @@ public class Main extends Application implements Initializable {
         System.out.println("Game started");
         playGame(e);
        //check();
+    }
+
+    public void aboutGame(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("GameObjectsPresence.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     public void check() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
