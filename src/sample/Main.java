@@ -49,6 +49,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
+
     @FXML
     private ImageView startbutton, newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon, playbutton, pausebutton, burst, bomb, island, island3, myhero, myBoss, mycoin, myRorc, myGorc;
     @FXML
@@ -190,7 +191,7 @@ public class Main extends Application implements Initializable {
         System.out.println("Move");
         TranslateTransition translate = new TranslateTransition();
         TranslateTransition translate1 = new TranslateTransition();
-//        TranslateTransition translate2 = new TranslateTransition();
+        TranslateTransition translate2 = new TranslateTransition();
         TranslateTransition translate3 = new TranslateTransition();
         TranslateTransition translate4 = new TranslateTransition();
         TranslateTransition translate5 = new TranslateTransition();
