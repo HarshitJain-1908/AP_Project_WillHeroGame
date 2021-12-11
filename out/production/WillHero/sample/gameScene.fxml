@@ -18,12 +18,12 @@
       </ImageView>
       <ImageView fx:id="myhero" fitHeight="102.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true" translateX="-400.0" translateY="-85.0">
          <image>
-            <Image url="@../hero.jpeg" />
+            <Image url="@../player.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pausebutton" fitHeight="47.0" fitWidth="156.0" onMouseClicked="#pauseGame" pickOnBounds="true" preserveRatio="true" translateX="-425.0" translateY="-275.0">
          <image>
-            <Image url="@../pause.jpeg" />
+            <Image url="@../pause_icon.png" />
          </image>
       </ImageView>
       <ImageView fx:id="move" fitHeight="55.0" fitWidth="67.0" onMouseClicked="#moveforward" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="-250.0">
