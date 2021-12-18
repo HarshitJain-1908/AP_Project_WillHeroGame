@@ -8,7 +8,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="897.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="score" fitHeight="600.0" fitWidth="897.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../background.jpeg" />
          </image>
@@ -38,21 +38,11 @@
             <Image url="@../island.png" />
          </image>
       </ImageView>
-      <Label fx:id="score" text="0" translateY="-250.0">
-         <font>
-            <Font size="58.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="41.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" translateX="-200.0" translateY="-250.0">
+      <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-200.0" translateY="-250.0">
          <image>
             <Image url="@../Coin.png" />
          </image>
       </ImageView>
-      <Label fx:id="noOfCoins" text="0" translateX="-240.0" translateY="-250.0">
-         <font>
-            <Font size="58.0" />
-         </font>
-      </Label>
       <ImageView fx:id="c_chest" fitHeight="108.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" translateX="120.0" translateY="27.0">
          <image>
             <Image url="@../ChestClosed.png" />
@@ -73,5 +63,15 @@
             <Image url="@../ChestOpen.png" />
          </image>
       </ImageView>
+      <Label fx:id="noOfCoins" prefHeight="56.0" prefWidth="27.0" text="0" textFill="YELLOW" translateX="-240.0" translateY="-250.0">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="score" prefHeight="56.0" prefWidth="27.0" text="0" textFill="YELLOW" translateY="-250.0">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="50.0" />
+         </font>
+      </Label>
    </children>
 </StackPane>
