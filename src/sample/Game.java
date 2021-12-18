@@ -167,7 +167,7 @@ public class Game extends Application implements Initializable, Serializable {
     }
 
     public void instantiate_hero(){
-        hero=new Player(s);
+        hero=new Player(s,myhero);
         System.out.println(hero+" hero :"+hero.getName());
     }
     public void startNewGame(ActionEvent e) throws IOException {
@@ -358,110 +358,110 @@ public class Game extends Application implements Initializable, Serializable {
     public void movePlayer(MouseEvent e) throws IOException {
         System.out.println(hero);
         hero.moveForward();
-        loc++;
-        score.setText(Integer.toString(loc));
-        System.out.println(score);
-        System.out.println("Move");
-        TranslateTransition translate = new TranslateTransition();
-        TranslateTransition translate1 = new TranslateTransition();
-        TranslateTransition translate3 = new TranslateTransition();
-        TranslateTransition translate4 = new TranslateTransition();
-        TranslateTransition translate5 = new TranslateTransition();
-        TranslateTransition translate6 = new TranslateTransition();
-        TranslateTransition translate7 = new TranslateTransition();
-        TranslateTransition translate8 = new TranslateTransition();
-        TranslateTransition translate9 = new TranslateTransition();
-        translate.setNode(myhero);
-        translate1.setNode(island1);
-
-        Image icon = new Image("island.png");
-        island2=new ImageView(icon);
-        island2.setFitWidth(314);
-        island2.setFitHeight(250);
-        island2.setTranslateX(520);
-        island2.setTranslateY(95);
-        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
-
-        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
-        translate2.setNode(island2);
-        translate2.setDuration(Duration.millis(3000));
-        translate2.setByY(80);
-        translate2.setCycleCount(TranslateTransition.INDEFINITE);
-        translate2.setAutoReverse(true);
-        translate2.setNode(island2);
-        translate3.setNode(gOrc);
-        //translate4.setNode(score);
-        translate5.setNode(island3);
-        translate6.setNode(island4);
-        translate7.setNode(c_chest);
-        //translate8.setNode(score);
-        translate9.setNode(open_chest);
-
-        translate.setDuration(Duration.millis(150));
-        translate1.setDuration(Duration.millis(300));
-        translate2.setDuration(Duration.millis(300));
-        translate5.setDuration(Duration.millis(300));
-        translate6.setDuration(Duration.millis(300));
-        translate3.setDuration(Duration.millis(300));
-        translate7.setDuration(Duration.millis(300));
-        //translate8.setDuration(Duration.millis(300));
-        translate9.setDuration(Duration.millis(300));
-
-        translate.setByX(53);
-        translate1.setByX(-57);
-        translate2.setByX(-57);
-        translate5.setByX(-57);
-        translate6.setByX(-57);
-        translate7.setByX(-57);
-        translate3.setByX(-57);
-        translate9.setByX(-57);
-        myhero.setX(myhero.getX() + 1);
-        island1.setX(-5);
-        System.out.println(island+" "+island2);
-        island2.setX(-5);
-        //island2.setTranslateX(island2.getTranslateX()-57);
-        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island1.getX()+" "+island2.getX()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
-        island3.setX(-5);
-        island4.setX(-5);
-        c_chest.setX(-5);
-        open_chest.setX(-5);
-        gOrc.setX(-5);
-
-        translate.play();
-        translate1.play();
-        //translate3.play();
-        translate4.play();
-        translate5.play();
-        translate6.play();
-        translate7.play();
-        translate9.play();
-        translate.play();
-        System.out.println(myhero.getX());
-        if (myhero.getX() == 5) {
-            c_chest.setOpacity(0);
-            open_chest.setOpacity(1);
-            coins+=5;
-            noOfCoins.setText(Integer.toString(coins));
-
-        }
-        if (myhero.getX() == 9) {
-            gOrc.setX(5);
-            translate3.setByX(57);
-            translate3.play();
-        }
-        if(myhero.getX()==10){
-            gOrc.setX(5);
-            translate3.setByX(57);
-            translate3.setDuration(Duration.millis(30));
-            gOrc.setOpacity(0);
-            translate3.setByY(200);
-            gOrc.setOpacity(0);
-            coins+=10;
-            noOfCoins.setText(Integer.toString(coins));
-            translate3.play();
-        }
-        translate2.play();
-        translate3.play();
+//        loc++;
+//        score.setText(Integer.toString(loc));
+//        System.out.println(score);
+//        System.out.println("Move");
+//        TranslateTransition translate = new TranslateTransition();
+//        TranslateTransition translate1 = new TranslateTransition();
+//        TranslateTransition translate3 = new TranslateTransition();
+//        TranslateTransition translate4 = new TranslateTransition();
+//        TranslateTransition translate5 = new TranslateTransition();
+//        TranslateTransition translate6 = new TranslateTransition();
+//        TranslateTransition translate7 = new TranslateTransition();
+//        TranslateTransition translate8 = new TranslateTransition();
+//        TranslateTransition translate9 = new TranslateTransition();
+//        translate.setNode(myhero);
+//        translate1.setNode(island1);
+//
+//        Image icon = new Image("island.png");
+//        island2=new ImageView(icon);
+//        island2.setFitWidth(314);
+//        island2.setFitHeight(250);
+//        island2.setTranslateX(520);
+//        island2.setTranslateY(95);
+//        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
+//
+//        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
+//        translate2.setNode(island2);
+//        translate2.setDuration(Duration.millis(3000));
+//        translate2.setByY(80);
+//        translate2.setCycleCount(TranslateTransition.INDEFINITE);
+//        translate2.setAutoReverse(true);
+//        translate2.setNode(island2);
+//        translate3.setNode(gOrc);
+//        //translate4.setNode(score);
+//        translate5.setNode(island3);
+//        translate6.setNode(island4);
+//        translate7.setNode(c_chest);
+//        //translate8.setNode(score);
+//        translate9.setNode(open_chest);
+//
+//        translate.setDuration(Duration.millis(150));
+//        translate1.setDuration(Duration.millis(300));
+//        translate2.setDuration(Duration.millis(300));
+//        translate5.setDuration(Duration.millis(300));
+//        translate6.setDuration(Duration.millis(300));
+//        translate3.setDuration(Duration.millis(300));
+//        translate7.setDuration(Duration.millis(300));
+//        //translate8.setDuration(Duration.millis(300));
+//        translate9.setDuration(Duration.millis(300));
+//
+//        translate.setByX(53);
+//        translate1.setByX(-57);
+//        translate2.setByX(-57);
+//        translate5.setByX(-57);
+//        translate6.setByX(-57);
+//        translate7.setByX(-57);
+//        translate3.setByX(-57);
+//        translate9.setByX(-57);
+//        myhero.setX(myhero.getX() + 1);
+//        island1.setX(-5);
+//        System.out.println(island+" "+island2);
+//        island2.setX(-5);
+//        //island2.setTranslateX(island2.getTranslateX()-57);
+//        System.out.println(island1.getTranslateX()+" "+island1.getTranslateY()+" "+island1.getX()+" "+island2.getX()+" "+island2.getTranslateX()+" "+island2.getTranslateY());
+//        island3.setX(-5);
+//        island4.setX(-5);
+//        c_chest.setX(-5);
+//        open_chest.setX(-5);
+//        gOrc.setX(-5);
+//
+//        translate.play();
+//        translate1.play();
+//        //translate3.play();
+//        translate4.play();
+//        translate5.play();
+//        translate6.play();
+//        translate7.play();
+//        translate9.play();
+//        translate.play();
+//        System.out.println(myhero.getX());
+//        if (myhero.getX() == 5) {
+//            c_chest.setOpacity(0);
+//            open_chest.setOpacity(1);
+//            coins+=5;
+//            noOfCoins.setText(Integer.toString(coins));
+//
+//        }
+//        if (myhero.getX() == 9) {
+//            gOrc.setX(5);
+//            translate3.setByX(57);
+//            translate3.play();
+//        }
+//        if(myhero.getX()==10){
+//            gOrc.setX(5);
+//            translate3.setByX(57);
+//            translate3.setDuration(Duration.millis(30));
+//            gOrc.setOpacity(0);
+//            translate3.setByY(200);
+//            gOrc.setOpacity(0);
+//            coins+=10;
+//            noOfCoins.setText(Integer.toString(coins));
+//            translate3.play();
+//        }
+//        translate2.play();
+//        translate3.play();
 
     }
     public void overgame() throws IOException {

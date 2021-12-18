@@ -14,11 +14,10 @@ public class Player {
     private String name;
     private Game game;
 
-    @FXML
     private ImageView me,movebutton;
 
 
-    public Player(String s) {
+    public Player(String s, ImageView i) {
         jumpHeight = 1;
         moveLength = 1;
         coins = 0;
@@ -26,6 +25,7 @@ public class Player {
         name=s;
         numberOfMoves=0;
         h=new Helmet();
+        me=i;
     }
     public void jump(){
 
