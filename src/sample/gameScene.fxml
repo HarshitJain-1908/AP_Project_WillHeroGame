@@ -13,7 +13,7 @@
             <Image url="@../background.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="island" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="175.0">
+      <ImageView fx:id="island1" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="175.0">
          <image>
             <Image url="@../island.png" />
          </image>

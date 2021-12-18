@@ -315,7 +315,7 @@ public class Game extends Application implements Initializable, Serializable {
     }
 
     public void switchToGameScreen(MouseEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("gameScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gameScene.fxml"));
         StackPane pane=(StackPane)root;
         Image icon = new Image("island.png");
         island2=new ImageView(icon);
