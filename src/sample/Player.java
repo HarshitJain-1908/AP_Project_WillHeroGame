@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -13,7 +14,8 @@ public class Player {
     private String name;
     private Game game;
 
-    private ImageView move;
+    @FXML
+    private ImageView me,movebutton;
 
 
     public Player(String s) {
