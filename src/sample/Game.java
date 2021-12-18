@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 public class Game extends Application implements Initializable, Serializable {
 
 
-    private Player hero;
+    private static Player hero;
     private LinkedList<GameObjects> gameObjects;
     private LinkedList<Island> island;
     private LinkedList<Orc> orc;
@@ -168,7 +168,7 @@ public class Game extends Application implements Initializable, Serializable {
 
     public void instantiate_hero(){
         hero=new Player(s);
-        System.out.println("hero :"+hero.getName());
+        System.out.println(hero+" hero :"+hero.getName());
     }
     public void startNewGame(ActionEvent e) throws IOException {
         System.out.println("Game started");
@@ -353,12 +353,10 @@ public class Game extends Application implements Initializable, Serializable {
     public void play(MouseEvent e) throws IOException {
         System.out.println("Play Game");
         switchToGameScreen(e);
-
-
     }
 
     public void movePlayer(MouseEvent e) throws IOException {
-
+        System.out.println(hero);
         hero.moveForward();
         loc++;
         score.setText(Integer.toString(loc));
