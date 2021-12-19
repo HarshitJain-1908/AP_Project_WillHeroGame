@@ -36,6 +36,7 @@ abstract public class Orc extends GameObjects {
     public void jump(){
 
     }
+
     @Override
     public void slide(){
 

@@ -302,7 +302,7 @@ public class Game extends Application implements Initializable, Serializable {
 
         heroTransition.play();
         transitions.play();
-
+        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -682,6 +682,19 @@ public class Game extends Application implements Initializable, Serializable {
 //        //translate.setByX(50);
 //        translate.setByY(100);
 //        translate.setAutoReverse(true);
+
+        //LinkedList<TranslateTransition> lst=new LinkedList<>();
+        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
+        for(int i=0;i<transitions4.size();i++){
+            System.out.println("ok");
+            TranslateTransition t=new TranslateTransition();
+            t.setNode(orc.get(i).getView());
+            t.setDuration(Duration.millis(600));
+            t.setCycleCount(TranslateTransition.INDEFINITE);
+            t.setByY(150);
+            t.setAutoReverse(true);
+            t.play();
+        }
 
 //        translate1.setNode(gOrc);
 //        translate1.setDuration(Duration.millis(600));

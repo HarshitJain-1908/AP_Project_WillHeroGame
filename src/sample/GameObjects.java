@@ -13,7 +13,9 @@ abstract public class GameObjects {
         this.id=id;
         me=i;
     }
-
+    public ImageView getView(){
+        return me;
+    }
     public int getId() {
         return id;
     }
