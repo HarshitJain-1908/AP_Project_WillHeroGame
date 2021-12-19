@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1084.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../background.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pausebutton" fitHeight="41.0" fitWidth="39.0" onMouseClicked="#pauseGame" pickOnBounds="true" preserveRatio="true" translateX="-520.0" translateY="-330.0">
+         <image>
+            <Image url="@../pause_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="movebutton" fitHeight="60.0" fitWidth="56.0" onMouseClicked="#movePlayer" pickOnBounds="true" preserveRatio="true" translateX="-520.0" translateY="-250.0">
+         <image>
+            <Image url="@../rightmove.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</StackPane>
