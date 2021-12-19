@@ -101,7 +101,7 @@ public class Game extends Application implements Initializable, Serializable {
             if (loc%2==0){
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+2, 0);
-                img.setTranslateX(-370+410*i);
+                img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 Island isd = new Island(i+1, s, e,img);
                 island.add(isd);
@@ -114,11 +114,9 @@ public class Game extends Application implements Initializable, Serializable {
             }
             else if (loc%2==1 && loc%9==0){ //3 moving islands
                 System.out.println("loc: "+loc);
-                img.setTranslateX(-370+410*i);
-                img.setTranslateY(190);
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+1, 0);
-                img.setTranslateX(-370+410*i);
+                img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 MovingIsland isd = new MovingIsland(i+1, s, e,img);
                 island.add(isd);
@@ -135,11 +133,10 @@ public class Game extends Application implements Initializable, Serializable {
 
             }
             else{
-                img.setTranslateX(-370+410*i);
-                img.setTranslateY(190);
+
                 s = new Coordinates(loc, 0);
                 e = new Coordinates(loc+1, 0);
-                img.setTranslateX(-370+410*i);
+                img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 Island isd = new Island(i+1, s, e,img);
                 island.add(isd);
@@ -159,7 +156,7 @@ public class Game extends Application implements Initializable, Serializable {
         Coordinates st1, e1, st2,  e2;
         st1 = new Coordinates(58, 0);
         e1 = new Coordinates(60, 0);
-        img.setTranslateX(-370+410*20);
+        img.setTranslateX(-370+450*20);
         img.setTranslateY(190);
         Island isd1 = new Island(21, st1, e1,img);
         island.add(isd1);
@@ -174,7 +171,7 @@ public class Game extends Application implements Initializable, Serializable {
         img.setFitHeight(260);
         st2 = new Coordinates(60, 0);
         e2 = new Coordinates(61, 0);
-        img.setTranslateX(-370+410*21);
+        img.setTranslateX(-370+450*21);
         img.setTranslateY(190);
         Island isd2 = new Island(22, st2, e2,img);
         island.add(isd2);
