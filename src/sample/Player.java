@@ -35,8 +35,8 @@ public class Player {
     public void moveForward(TranslateTransition t, int s){
         numberOfMoves++;
         setCoord(coord.getX()+moveLength, coord.getY());
-        t.setDuration(Duration.millis(150+150));
-        t.setByX(83*(1-s));
+        t.setDuration(Duration.millis(150+150*s));
+        t.setByX(83-57*2*s);
         t.play();
 
     }

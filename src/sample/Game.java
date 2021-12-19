@@ -99,8 +99,8 @@ public class Game extends Application implements Initializable, Serializable {
             img.setFitWidth(314);
             img.setFitHeight(260);
             if (loc%2==0){
-                s = new Coordinates(loc, 0);
-                e = new Coordinates(loc+2, 0);
+                s = new Coordinates(-370+(450*i), 190);
+                e = new Coordinates(-56+(450*i), 190);
                 img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 Island isd = new Island(i+1, s, e,img);
@@ -114,8 +114,8 @@ public class Game extends Application implements Initializable, Serializable {
             }
             else if (loc%2==1 && loc%9==0){ //3 moving islands
                 System.out.println("loc: "+loc);
-                s = new Coordinates(loc, 0);
-                e = new Coordinates(loc+1, 0);
+                s = new Coordinates(-370+(450*i), 190);
+                e = new Coordinates(-56+(450*i), 190);
                 img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 MovingIsland isd = new MovingIsland(i+1, s, e,img);
@@ -134,8 +134,8 @@ public class Game extends Application implements Initializable, Serializable {
             }
             else{
 
-                s = new Coordinates(loc, 0);
-                e = new Coordinates(loc+1, 0);
+                s = new Coordinates(-370+(450*i), 190);
+                e = new Coordinates(-56+(450*i), 190);
                 img.setTranslateX(-370+450*i);
                 img.setTranslateY(190);
                 Island isd = new Island(i+1, s, e,img);
@@ -149,78 +149,83 @@ public class Game extends Application implements Initializable, Serializable {
 
 
         }
-        Image icon = new Image("island.png");
-        ImageView img=new ImageView(icon);
-        img.setFitWidth(314);
-        img.setFitHeight(260);
-        Coordinates st1, e1, st2,  e2;
-        st1 = new Coordinates(58, 0);
-        e1 = new Coordinates(60, 0);
-        img.setTranslateX(-370+450*20);
-        img.setTranslateY(190);
-        Island isd1 = new Island(21, st1, e1,img);
-        island.add(isd1);
-        pane.getChildren().add(img);
+
+        for (int i=0;i<4;i++){
+            Image icon = new Image("island.png");
+            ImageView img=new ImageView(icon);
+            img.setFitWidth(314);
+            img.setFitHeight(260);
+            Coordinates st1, e1, st2,  e2;
+            st1 = new Coordinates(8630+(314*i), 190);
+            e1 = new Coordinates(8630+(314*2*i), 190);
+            img.setTranslateX(8630+(314*i));
+            img.setTranslateY(190);
+            Island isd1 = new Island(21+i, st1, e1,img);
+            island.add(isd1);
+            pane.getChildren().add(img);
+            TranslateTransition t=new TranslateTransition();
+            t.setNode(img);
+            transitions1.add(t);
+        }
+
         TranslateTransition t=new TranslateTransition();
-        t.setNode(img);
-        transitions1.add(t);
 
-        icon = new Image("island.png");
-        img=new ImageView(icon);
-        img.setFitWidth(314);
-        img.setFitHeight(260);
-        st2 = new Coordinates(60, 0);
-        e2 = new Coordinates(61, 0);
-        img.setTranslateX(-370+450*21);
-        img.setTranslateY(190);
-        Island isd2 = new Island(22, st2, e2,img);
-        island.add(isd2);
-        pane.getChildren().add(img);
-        t=new TranslateTransition();
-        t.setNode(img);
-        transitions1.add(t);
-
-
-        Image icon1 = new Image("tnt.jpeg");
+        //obstacle - TNT
+        Image icon1 = new Image("TNT.png");
         ImageView img1=new ImageView(icon1);
-        img1.setFitWidth(150);
-        img1.setFitHeight(80);
+        img1.setFitWidth(100);
+        img1.setFitHeight(100);
         //adding obstacle - TNT
         Coordinates s1, s2;
-        s1 = new Coordinates(12, 0);
-        s2 = new Coordinates(36, 0);
-        Obstacle obst1 = new Obstacle(23, s1,img1);
-        img1.setTranslateX(500);
-        img1.setTranslateY(50);
+        s1 = new Coordinates(1500, 10);
+        s2 = new Coordinates(5500, 10);
+        Obstacle obst1 = new Obstacle(25, s1,img1);
+        img1.setTranslateX(1500);
+        img1.setTranslateY(10);
         obstacles.add(obst1);
         pane.getChildren().add(img1);
         t=new TranslateTransition();
         t.setNode(img1);
         transitions2.add(t);
 
-        icon1 = new Image("tnt.jpeg");
+        icon1 = new Image("TNT.png");
         img1=new ImageView(icon1);
         img1.setFitWidth(100);
-        img1.setFitHeight(80);
-        Obstacle obst2 = new Obstacle(24, s2,img1);
+        img1.setFitHeight(100);
+        Obstacle obst2 = new Obstacle(26, s2,img1);
         obstacles.add(obst2);
         pane.getChildren().add(img1);
-        img1.setTranslateX(1000);
-        img1.setTranslateY(40);
+        img1.setTranslateX(5500);
+        img1.setTranslateY(10);
         t=new TranslateTransition();
         t.setNode(img1);
         transitions2.add(t);
 
-        //adding chests: coin chest at coordinates 6 and 24, weapon chest at coordinates 18, 30 and 42
+        //adding chests
 
         int loc_chest = 6;
         for (int i=0;i<2;i++){
             Image icon2 = new Image("ChestClosed.png");
             ImageView img2=new ImageView(icon2);
-            s = new Coordinates(loc_chest, 0);
-            CoinChest c_chest = new CoinChest(i+25, s, 50,img2); //ids 25 and 26
+            img2.setFitWidth(120);
+            img2.setFitHeight(90);
+            s = new Coordinates(0,0); //
+            if (i==0){
+                s = new Coordinates(500, 20);
+            }
+            else if (i==1){
+                s = new Coordinates(4200, 20);
+            }
+            CoinChest c_chest = new CoinChest(i+27, s, 50,img2); //ids 25 and 26
             chests.add(c_chest);
             pane.getChildren().add(img2);
+            if (i==0){
+                img2.setTranslateX(500);
+            }
+            else if (i==1){
+                img2.setTranslateX(4200);
+            }
+            img2.setTranslateY(20);
             t=new TranslateTransition();
             t.setNode(img2);
             transitions3.add(t);
@@ -231,11 +236,25 @@ public class Game extends Application implements Initializable, Serializable {
         for (int i=0;i<3;i++){
             Image icon2 = new Image("ChestClosed.png");
             ImageView img2=new ImageView(icon2);
+            img2.setFitWidth(120);
+            img2.setFitHeight(90);
             String[] arr = {"axe", "rocket", "axe"};
-            s = new Coordinates(loc_chest, 0);
-            WeaponChest w_chest = new WeaponChest(i+27, s, arr[i],img2); //ids 27, 28 and 29
+            if(i==1){
+                s = new Coordinates(6800, 20);
+            }
+            else{
+                s = new Coordinates(2300+(2900*i), 20);
+            }
+            WeaponChest w_chest = new WeaponChest(i+29, s, arr[i],img2); //ids 27, 28 and 29
             chests.add(w_chest);
             pane.getChildren().add(img2);
+            if(i==1){
+                img2.setTranslateX(6800);
+            }
+            else{
+                img2.setTranslateX(2300+(2900*i));
+            }
+            img2.setTranslateY(20);
             t=new TranslateTransition();
             t.setNode(img2);
             transitions3.add(t);
@@ -248,14 +267,25 @@ public class Game extends Application implements Initializable, Serializable {
         for (int i=0;i<6;i++){
             Image icon3 = new Image("greenOrc.jpeg");
             ImageView img3=new ImageView(icon3);
-            img3.setFitWidth(100);
-            img3.setFitHeight(100);
-            img3.setTranslateX(500*i);
-            img3.setTranslateY(-150);
-            s = new Coordinates(loc_orc, 0);
-            GreenOrc orc1 = new GreenOrc(i+30, s, "green", 2, 30, 10,img3);
+            img3.setFitWidth(90);
+            img3.setFitHeight(90);
+            if (i==5){
+                s = new Coordinates(4500, -150);
+            }
+            else{
+                s = new Coordinates(-10+(950*i), -150);
+            }
+            GreenOrc orc1 = new GreenOrc(i+32, s, "green", 2, 30, 10,img3);
             orc.add(orc1);
             pane.getChildren().add(img3);
+            if (i==5){
+                img3.setTranslateX(4500);
+            }
+            else{
+                img3.setTranslateX(-10+(950*i));
+            }
+
+            img3.setTranslateY(-150);
             t=new TranslateTransition();
             t.setNode(img3);
             transitions4.add(t);
@@ -270,13 +300,17 @@ public class Game extends Application implements Initializable, Serializable {
         //loc_orc = 21 at this point
         //adding Orcs - Red at positions = 21, 25, 27, 31, 33, 37
 
-        for (int i=0;i<6;i++){
+        for (int i=0;i<4;i++){
             Image icon4 = new Image("redOrc.jpeg");
             ImageView img4=new ImageView(icon4);
-            s = new Coordinates(loc_orc, 0);
-            RedOrc orc1 = new RedOrc(i+36, s, "red", 2, 40, 10,img4);
+            img4.setFitWidth(90);
+            img4.setFitHeight(90);
+            s = new Coordinates(5000+(950*i), -150);
+            RedOrc orc1 = new RedOrc(i+38, s, "red", 2, 40, 10,img4);
             orc.add(orc1);
             t=new TranslateTransition();
+            img4.setTranslateX(5000+(950*i));
+            img4.setTranslateY(-150);
             t.setNode(img4);
             transitions4.add(t);
             pane.getChildren().add(img4);
@@ -289,14 +323,18 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
         //adding Boss
-        Image icon5 = new Image("Boss.jpeg");
+        Image icon5 = new Image("Orc5.png");
         ImageView img5=new ImageView(icon5);
+        img5.setFitWidth(200);
+        img5.setFitHeight(200);
         Coordinates s0;
-        s0 = new Coordinates(58, 0);
-        Boss boss = new Boss(52, s0, "boss", 10, 70, 100,img5);
+        s0 = new Coordinates(9100, -150);
+        Boss boss = new Boss(42, s0, "boss", 10, 70, 100,img5);
         orc.add(boss);
         pane.getChildren().add(img5);
         t=new TranslateTransition();
+        img5.setTranslateX(9100);
+        img5.setTranslateY(-40);
         t.setNode(img5);
         transitions4.add(t);
 
@@ -315,8 +353,8 @@ public class Game extends Application implements Initializable, Serializable {
     public ImageView instantiate_hero(){
         Image icon = new Image("player.png");
         ImageView img=new ImageView(icon);
-        img.setFitWidth(100);
-        img.setFitHeight(100);
+        img.setFitWidth(75);
+        img.setFitHeight(75);
         img.setTranslateX(-450);
         img.setTranslateY(-75);
         hero=new Player(s,myhero);
@@ -352,6 +390,13 @@ public class Game extends Application implements Initializable, Serializable {
         stage.setScene(scene);
         stage.setX(600);
         stage.show();
+    }
+    public void collision(int x, ImageView i1, ImageView i2){
+        if (myhero.getX() == x) {
+            i1.setOpacity(0);
+            i2.setOpacity(1);
+            //add if conditions for chests and tnt??
+        }
     }
 
     public void resumeGame(){
@@ -515,40 +560,41 @@ public class Game extends Application implements Initializable, Serializable {
         //System.out.println("s: "+island.size());
         for(int i=0;i<island.size();i++){
             //System.out.println("@ "+transitions1.get(i).getNode());
-            transitions1.get(i).setDuration(Duration.millis(300+600*s));
-            transitions1.get(i).setByX(-57*4*s);
+            transitions1.get(i).setDuration(Duration.millis(300));
+            transitions1.get(i).setByX(-57);
             //System.out.print(transitions1.get(i).getByX()+" ");
             transitions1.get(i).play();
         }
         for(int i=0;i<obstacles.size();i++){
-            transitions2.get(i).setDuration(Duration.millis(300+600*s));
-            transitions2.get(i).setByX(-57*4*s);
+            transitions2.get(i).setDuration(Duration.millis(300));
+            transitions2.get(i).setByX(-57);
             transitions2.get(i).play();
         }
         for(int i=0;i<chests.size();i++){
-            transitions3.get(i).setDuration(Duration.millis(300+600*s));
-            transitions3.get(i).setByX(-57*4*s);
+            transitions3.get(i).setDuration(Duration.millis(300));
+            transitions3.get(i).setByX(-57);
             transitions3.get(i).play();
         }
         for(int i=0;i<orc.size();i++){
-            transitions4.get(i).setDuration(Duration.millis(300+600*s));
-            transitions4.get(i).setByX(-57*4*s);
+            transitions4.get(i).setDuration(Duration.millis(300));
+            transitions4.get(i).setByX(-57);
             transitions4.get(i).play();
         }
     }
     public void movePlayer(MouseEvent e) throws IOException {
-        if((hero.getNumberOfMoves()%5==0) && (hero.getNumberOfMoves()!=0) ) {
-            moveScreen(1);
-            TranslateTransition heroTransition1=new TranslateTransition();
-            heroTransition1.setNode(myhero);
-            hero.moveForward(heroTransition1,1);
-        }
-        else{
-            //moveScreen(0);
-            TranslateTransition heroTransition1=new TranslateTransition();
-            heroTransition1.setNode(myhero);
-            hero.moveForward(heroTransition1,0);
-        }
+        moveScreen(1);
+//        if((hero.getNumberOfMoves()%5==0) && (hero.getNumberOfMoves()!=0) ) {
+//            moveScreen(1);
+//            TranslateTransition heroTransition1=new TranslateTransition();
+//            heroTransition1.setNode(myhero);
+//            hero.moveForward(heroTransition1,1);
+//        }
+//        else{
+//            //moveScreen(0);
+//            TranslateTransition heroTransition1=new TranslateTransition();
+//            heroTransition1.setNode(myhero);
+//            //hero.moveForward(heroTransition1,0);
+//        }
         //System.out.println("hero "+hero);
 
 //        heroTransition.setDuration(Duration.millis(5));
