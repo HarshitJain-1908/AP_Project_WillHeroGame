@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.ImageView;
+
 abstract public class Orc extends GameObjects {
     private int power;
     private final int size;
@@ -7,8 +9,8 @@ abstract public class Orc extends GameObjects {
     private final String type;
     private final int jumpHeight;
 
-    public Orc(int id, Coordinates c, String t, int s, int p, int r){
-        super(id,c);
+    public Orc(int id, Coordinates c, String t, int s, int p, int r, ImageView i){
+        super(id,c,i);
         jumpHeight=2;
         type=t;
         size=s;

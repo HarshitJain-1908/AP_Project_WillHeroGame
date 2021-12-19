@@ -8,12 +8,12 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
    <children>
-      <ImageView fx:id="score" fitHeight="600.0" fitWidth="897.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="897.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../background.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="island" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="175.0">
+      <ImageView fx:id="island1" fitHeight="260.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="175.0">
          <image>
             <Image url="@../island.png" />
          </image>
@@ -28,7 +28,7 @@
             <Image url="@../pause_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="move" fitHeight="55.0" fitWidth="67.0" onMouseClicked="#moveforward" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="-250.0">
+      <ImageView fx:id="movebutton" fitHeight="55.0" fitWidth="67.0" onMouseClicked="#movePlayer" pickOnBounds="true" preserveRatio="true" translateX="-420.0" translateY="-220.0">
          <image>
             <Image url="@../rightmove.jpeg" />
          </image>

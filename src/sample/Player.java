@@ -1,8 +1,10 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 public class Player {
     private int numberOfMoves;
@@ -14,7 +16,7 @@ public class Player {
     private String name;
     private Game game;
 
-    private ImageView me,movebutton;
+    private ImageView me;
 
 
     public Player(String s, ImageView i) {
@@ -30,8 +32,12 @@ public class Player {
     public void jump(){
 
     }
-    public void moveForward(){
-
+    public void moveForward(TranslateTransition t, int s){
+        numberOfMoves++;
+        setCoord(coord.getX()+moveLength, coord.getY());
+        t.setDuration(Duration.millis(150+150*s));
+        t.setByX(53-57*2*s);
+        t.play();
     }
     public String getName() {
         return name;

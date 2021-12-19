@@ -40,7 +40,7 @@
                   <Image url="@../resume_icon.png" />
                </image>
             </ImageView>
-            <Button fx:id="exiticon" mnemonicParsing="false" onMouseClicked="#startNewGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="EXIT" translateY="30.0">
+            <Button fx:id="exiticon" mnemonicParsing="false" onAction="#backGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="EXIT" translateY="30.0">
                <font>
                   <Font name="HP Simplified Jpan Regular" size="23.0" />
                </font>
