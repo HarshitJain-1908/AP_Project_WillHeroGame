@@ -37,7 +37,7 @@ public class Player {
         setCoord(coord.getX()+moveLength, coord.getY());
         t.setDuration(Duration.millis(150+150*s));
         t.setByX(83-57*2*s);
-        t.play();
+        //t.play();
 
     }
     public String getName() {
