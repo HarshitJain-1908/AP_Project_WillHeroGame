@@ -72,6 +72,8 @@ public class Game extends Application implements Initializable, Serializable {
 
     }
     private void placeGameObjects(MouseEvent event) throws IOException {
+
+
         System.out.println("place ");
         Parent root = FXMLLoader.load(getClass().getResource("nayiGameScene.fxml"));
         StackPane pane=(StackPane)root;
@@ -285,7 +287,7 @@ public class Game extends Application implements Initializable, Serializable {
                 img3.setTranslateX(-10+(950*i));
             }
 
-            img3.setTranslateY(-150);
+            img3.setTranslateY(-300);
             t=new TranslateTransition();
             t.setNode(img3);
             transitions4.add(t);
@@ -310,7 +312,7 @@ public class Game extends Application implements Initializable, Serializable {
             orc.add(orc1);
             t=new TranslateTransition();
             img4.setTranslateX(5000+(950*i));
-            img4.setTranslateY(-150);
+            img4.setTranslateY(-300);
             t.setNode(img4);
             transitions4.add(t);
             pane.getChildren().add(img4);
@@ -340,7 +342,20 @@ public class Game extends Application implements Initializable, Serializable {
 
         heroTransition.play();
         transitions.play();
+        System.out.println("size h: "+transitions4.size()+" "+transitions1.size());
+
         System.out.println("size: "+transitions4.size()+" "+transitions1.size());
+        for(int i=0;i<transitions4.size();i++){
+            //System.out.println("ok");
+            TranslateTransition t1=new TranslateTransition();
+            t1.setNode(orc.get(i).getView());
+            t1.setDuration(Duration.millis(800));
+            t1.setCycleCount(TranslateTransition.INDEFINITE);
+            t1.setByY(320);
+            t1.setAutoReverse(true);
+            t1.play();
+        }
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -391,11 +406,18 @@ public class Game extends Application implements Initializable, Serializable {
         stage.setX(600);
         stage.show();
     }
-    public void collision(int x, ImageView i1, ImageView i2){
-        if (myhero.getX() == x) {
-            i1.setOpacity(0);
-            i2.setOpacity(1);
-            //add if conditions for chests and tnt??
+    public boolean collision(int x, ImageView i1, ImageView i2){
+        if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
+            System.out.println("collided");
+            return true;
+        }
+//        if (myhero.getX() == x) {
+//            i1.setOpacity(0);
+//            i2.setOpacity(1);
+//            //add if conditions for chests and tnt??
+//        }
+        else{
+            return false;
         }
     }
 
@@ -560,41 +582,46 @@ public class Game extends Application implements Initializable, Serializable {
         //System.out.println("s: "+island.size());
         for(int i=0;i<island.size();i++){
             //System.out.println("@ "+transitions1.get(i).getNode());
-            transitions1.get(i).setDuration(Duration.millis(300));
-            transitions1.get(i).setByX(-57);
+            transitions1.get(i).setDuration(Duration.millis(300+1600*s));
+            transitions1.get(i).setByX(-57-57*8*s);
             //System.out.print(transitions1.get(i).getByX()+" ");
             transitions1.get(i).play();
         }
         for(int i=0;i<obstacles.size();i++){
-            transitions2.get(i).setDuration(Duration.millis(300));
-            transitions2.get(i).setByX(-57);
+            transitions2.get(i).setDuration(Duration.millis(300+1600*s));
+            transitions2.get(i).setByX(-57-57*8*s);
             transitions2.get(i).play();
         }
         for(int i=0;i<chests.size();i++){
-            transitions3.get(i).setDuration(Duration.millis(300));
-            transitions3.get(i).setByX(-57);
+            transitions3.get(i).setDuration(Duration.millis(300+1600*s));
+            transitions3.get(i).setByX(-57-57*8*s);
             transitions3.get(i).play();
         }
         for(int i=0;i<orc.size();i++){
-            transitions4.get(i).setDuration(Duration.millis(300));
-            transitions4.get(i).setByX(-57);
+            transitions4.get(i).setDuration(Duration.millis(300+1600*s));
+            transitions4.get(i).setByX(-57-57*8*s);
             transitions4.get(i).play();
         }
     }
     public void movePlayer(MouseEvent e) throws IOException {
-        moveScreen(1);
-//        if((hero.getNumberOfMoves()%5==0) && (hero.getNumberOfMoves()!=0) ) {
-//            moveScreen(1);
-//            TranslateTransition heroTransition1=new TranslateTransition();
-//            heroTransition1.setNode(myhero);
-//            hero.moveForward(heroTransition1,1);
-//        }
-//        else{
-//            //moveScreen(0);
-//            TranslateTransition heroTransition1=new TranslateTransition();
-//            heroTransition1.setNode(myhero);
-//            //hero.moveForward(heroTransition1,0);
-//        }
+        //moveScreen(1);
+        if((hero.getNumberOfMoves()%12==0) && (hero.getNumberOfMoves()!=0) ) {
+            moveScreen(1);
+            TranslateTransition heroTransition1=new TranslateTransition();
+            heroTransition1.setNode(myhero);
+            hero.moveForward(heroTransition1,1);
+        }
+        else{
+            moveScreen(0);
+            TranslateTransition heroTransition1=new TranslateTransition();
+            heroTransition1.setNode(myhero);
+            hero.moveForward(heroTransition1,0);
+        }
+        for(int i=0;i<orc.size();i++){
+            boolean status=collision(2,myhero,orc.get(i).getView());
+            //System.out.println(status);
+        }
+        //boolean status=collision(2,myhero,)
         //System.out.println("hero "+hero);
 
 //        heroTransition.setDuration(Duration.millis(5));
@@ -730,17 +757,17 @@ public class Game extends Application implements Initializable, Serializable {
 //        translate.setAutoReverse(true);
 
         //LinkedList<TranslateTransition> lst=new LinkedList<>();
-        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
-        for(int i=0;i<transitions4.size();i++){
-            System.out.println("ok");
-            TranslateTransition t=new TranslateTransition();
-            t.setNode(orc.get(i).getView());
-            t.setDuration(Duration.millis(600));
-            t.setCycleCount(TranslateTransition.INDEFINITE);
-            t.setByY(150);
-            t.setAutoReverse(true);
-            t.play();
-        }
+//        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
+//        for(int i=0;i<transitions4.size();i++){
+//            System.out.println("ok");
+//            TranslateTransition t=new TranslateTransition();
+//            t.setNode(orc.get(i).getView());
+//            t.setDuration(Duration.millis(600));
+//            t.setCycleCount(TranslateTransition.INDEFINITE);
+//            t.setByY(150);
+//            t.setAutoReverse(true);
+//            t.play();
+//        }
 
 //        translate1.setNode(gOrc);
 //        translate1.setDuration(Duration.millis(600));
