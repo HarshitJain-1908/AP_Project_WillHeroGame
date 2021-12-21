@@ -35,6 +35,7 @@ public class Game extends Application implements Initializable, Serializable {
     private static LinkedList<Orc> orc;
     private static LinkedList<Obstacle> obstacles;
     private static LinkedList<Treasure> chests;
+    private static LinkedList<Coin> coinl;
 
     private static int highScore;
     private int gid;
@@ -62,6 +63,7 @@ public class Game extends Application implements Initializable, Serializable {
         orc=new LinkedList<>(); //all orcs including boss
         obstacles=new LinkedList<>(); //obstacles
         chests=new LinkedList<>(); //chests
+        coinl = new LinkedList<>(); //coins
 //        placeGameObjects();
         transitions1=new LinkedList<>();
         transitions2=new LinkedList<>();
@@ -340,6 +342,35 @@ public class Game extends Application implements Initializable, Serializable {
         t.setNode(img5);
         transitions4.add(t);
 
+        int spc = 3100;
+        for (int i=0;i<3;i++){
+            int spc1 = 50;
+            for (int j=0;j<3;j++){
+                Image icon6 = new Image("Coin.png");
+                ImageView img6 = new ImageView(icon6);
+                img6.setFitWidth(50);
+                img6.setFitHeight(50);
+                if(i==2){
+                    img6.setTranslateX(8700 + spc1);
+                    img6.setTranslateY(30);
+                    s0 = new Coordinates(8700 + spc1 , 30);
+                }
+                else{
+                    img6.setTranslateX(spc + spc1);
+                    img6.setTranslateY(30);
+                    s0 = new Coordinates(spc + spc1 , 30);
+                }
+                Coin coin = new Coin(43+i+j, s0, img6);
+                coinl.add(coin);
+                pane.getChildren().add(img6);
+                t=new TranslateTransition();
+                t.setNode(img6);
+                transitions5.add(t);
+                spc1 += 70;
+            }
+            spc += 3150;
+        }
+
         heroTransition.play();
         transitions.play();
         System.out.println("size h: "+transitions4.size()+" "+transitions1.size());
@@ -601,6 +632,11 @@ public class Game extends Application implements Initializable, Serializable {
             transitions4.get(i).setDuration(Duration.millis(300+1600*s));
             transitions4.get(i).setByX(-57-57*8*s);
             transitions4.get(i).play();
+        }
+        for(int i=0;i<coinl.size();i++){
+            transitions5.get(i).setDuration(Duration.millis(300+1600*s));
+            transitions5.get(i).setByX(-57-57*8*s);
+            transitions5.get(i).play();
         }
     }
     public void movePlayer(MouseEvent e) throws IOException {
