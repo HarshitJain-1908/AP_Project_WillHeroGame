@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javafx.geom.Shape;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.shape.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -54,7 +56,7 @@ public class Game extends Application implements Initializable, Serializable {
     private int loc=0, coins=0;
     private String s="";
     private static ImageView myhero;
-
+    private static boolean status=false, status1=false;
 
 
     public Game() {
@@ -118,10 +120,10 @@ public class Game extends Application implements Initializable, Serializable {
             }
             else if (loc%2==1 && loc%9==0){ //3 moving islands
                 System.out.println("loc: "+loc);
-                s = new Coordinates(-370+(450*i), 190);
-                e = new Coordinates(-56+(450*i), 190);
+                s = new Coordinates(-370+(450*i), 0);
+                e = new Coordinates(-56+(450*i), 0);
                 img.setTranslateX(-370+450*i);
-                img.setTranslateY(190);
+                img.setTranslateY(0);
                 MovingIsland isd = new MovingIsland(i+1, s, e,img);
                 island.add(isd);
                 pane.getChildren().add(img);
@@ -129,12 +131,13 @@ public class Game extends Application implements Initializable, Serializable {
                 t.setNode(img);
                 transitions1.add(t);
                 //set animation for Moving island
-                transitions.setDuration(Duration.millis(3000));
-                transitions.setByY(80);
-                transitions.setCycleCount(TranslateTransition.INDEFINITE);
-                transitions.setAutoReverse(true);
-                //transitions.play();
-
+                TranslateTransition t1=new TranslateTransition();
+                t1.setNode(img);
+                t1.setDuration(Duration.millis(1200));
+                t1.setByY(190);
+                t1.setCycleCount(TranslateTransition.INDEFINITE);
+                t1.setAutoReverse(true);
+                t1.play();
             }
             else{
 
@@ -338,9 +341,16 @@ public class Game extends Application implements Initializable, Serializable {
         pane.getChildren().add(img5);
         t=new TranslateTransition();
         img5.setTranslateX(9100);
-        img5.setTranslateY(-40);
+        img5.setTranslateY(-500);
         t.setNode(img5);
         transitions4.add(t);
+//        TranslateTransition t2=new TranslateTransition();
+//        t2.setNode(img5);
+//        t2.setDuration(Duration.millis(600));
+//        t2.setByY(50);
+//        t2.setCycleCount(TranslateTransition.INDEFINITE);
+//        t2.setAutoReverse(true);
+//        t2.play();
 
         int spc = 3100;
         for (int i=0;i<3;i++){
@@ -377,14 +387,24 @@ public class Game extends Application implements Initializable, Serializable {
 
         System.out.println("size: "+transitions4.size()+" "+transitions1.size());
         for(int i=0;i<transitions4.size();i++){
-            //System.out.println("ok");
-            TranslateTransition t1=new TranslateTransition();
-            t1.setNode(orc.get(i).getView());
-            t1.setDuration(Duration.millis(800));
-            t1.setCycleCount(TranslateTransition.INDEFINITE);
-            t1.setByY(320);
-            t1.setAutoReverse(true);
-            t1.play();
+            if(i!=orc.size()-1) {
+                //System.out.println("ok");
+                TranslateTransition t1 = new TranslateTransition();
+                t1.setNode(orc.get(i).getView());
+                t1.setDuration(Duration.millis(800));
+                t1.setCycleCount(TranslateTransition.INDEFINITE);
+                t1.setByY(320);
+                t1.setAutoReverse(true);
+                t1.play();
+            }else{
+//                TranslateTransition t1 = new TranslateTransition();
+//                t1.setNode(orc.get(i).getView());
+//                t1.setDuration(Duration.millis(300));
+//                t1.setCycleCount(TranslateTransition.INDEFINITE);
+//                t1.setByY(60);
+//                //t1.setAutoReverse(true);
+//                t1.play();
+            }
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -438,18 +458,21 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
     public boolean collision(int x, ImageView i1, ImageView i2){
-        if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
-            System.out.println("collided");
-            return true;
-        }
+//        if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())) {
+////            System.out.println("collided");
+////            return true;
+//        }
+//            if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
+//                System.out.println("collided");
+//                return true;
+//            }
+       // }
 //        if (myhero.getX() == x) {
 //            i1.setOpacity(0);
 //            i2.setOpacity(1);
 //            //add if conditions for chests and tnt??
 //        }
-        else{
-            return false;
-        }
+        return false;
     }
 
     public void resumeGame(){
@@ -639,19 +662,57 @@ public class Game extends Application implements Initializable, Serializable {
             transitions5.get(i).play();
         }
     }
+//    public void animate(){
+//        TranslateTransition t1 = new TranslateTransition();
+//        t1.setNode(orc.get(orc.size()-1).getView());
+//        t1.setDuration(Duration.millis(300));
+//        t1.setCycleCount(TranslateTransition.INDEFINITE);
+//        t1.setByY(60);
+//        t1.setAutoReverse(true);
+//        t1.play();
+//    }
     public void movePlayer(MouseEvent e) throws IOException {
         //moveScreen(1);
+        if(myhero.getTranslateX()>=5900){
+            System.out.println(status);
+            TranslateTransition t=new TranslateTransition();
+            t.setNode(orc.get(orc.size()-1).getView());
+            t.setDuration(Duration.millis(500));
+            t.setByY(460);
+            t.play();
+//            status=true;
+//            status1=true;
+//            TranslateTransition t1 = new TranslateTransition();
+//            t1.setNode(orc.get(orc.size()-1).getView());
+//            t1.setDuration(Duration.millis(300));
+//            t1.setCycleCount(TranslateTransition.INDEFINITE);
+//            t1.setByY(60);
+//            t1.setAutoReverse(true);
+//            t1.play();
+//            TranslateTransition t2=new TranslateTransition();
+//            t2.setNode(orc.get(orc.size()-1).getView());
+//            t2.setDuration(Duration.millis(600));
+//            t2.setByY(50);
+//            t2.setCycleCount(TranslateTransition.INDEFINITE);
+//            t2.setAutoReverse(true);
+//            t2.play();
+        }
+//        if(status1){animate();
+//
+//            status1=false;
+//        }
+        System.out.println(myhero.getTranslateX()+" "+myhero.getX());
         if((hero.getNumberOfMoves()%12==0) && (hero.getNumberOfMoves()!=0) ) {
-            moveScreen(1);
             TranslateTransition heroTransition1=new TranslateTransition();
             heroTransition1.setNode(myhero);
             hero.moveForward(heroTransition1,1);
+            moveScreen(1);
         }
         else{
-            moveScreen(0);
             TranslateTransition heroTransition1=new TranslateTransition();
             heroTransition1.setNode(myhero);
             hero.moveForward(heroTransition1,0);
+            moveScreen(0);
         }
         for(int i=0;i<orc.size();i++){
             boolean status=collision(2,myhero,orc.get(i).getView());

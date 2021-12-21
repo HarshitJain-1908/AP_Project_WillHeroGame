@@ -35,9 +35,17 @@ public class Player {
     public void moveForward(TranslateTransition t, int s){
         numberOfMoves++;
         setCoord(coord.getX()+moveLength, coord.getY());
-        t.setDuration(Duration.millis(150+1600*s+150*s));
-        t.setByX(53-57*10*s);
+        t.setDuration(Duration.millis(150));
+        t.setByX(53);
         t.play();
+        t.setDuration(Duration.millis(1600*s+150*s));
+        t.setByX(-57*10*s);
+        t.play();
+//        TranslateTransition t1=new TranslateTransition();
+//        t1.setNode(me);
+//        t1.setDuration(Duration.millis(1600*s+150*s));
+//        t1.setByX(-57*10*s);
+//        t1.play();
 
     }
     public String getName() {

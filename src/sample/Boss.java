@@ -15,5 +15,8 @@ public class Boss extends GreenOrc {
     public void upDatePower(int p){
 
     }
+    public void enterInGame(){
+
+    }
 }
 
