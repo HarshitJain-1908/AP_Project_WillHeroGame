@@ -104,7 +104,7 @@ public class Game extends Application implements Initializable, Serializable {
             ImageView img=new ImageView(icon);
             img.setFitWidth(314);
             img.setFitHeight(260);
-            if (loc%2==0){
+            if (loc%2==0&&(loc!=6)&&(loc!=24)){
                 s = new Coordinates(-370+(450*i), 190);
                 e = new Coordinates(-56+(450*i), 190);
                 img.setTranslateX(-370+450*i);
@@ -118,7 +118,7 @@ public class Game extends Application implements Initializable, Serializable {
                 transitions1.add(t);
 
             }
-            else if (loc%2==1 && loc%9==0){ //3 moving islands
+            else if ((loc==6)||(loc==24)||(loc==39)||(loc==51)){ //4 moving islands
                 System.out.println("loc: "+loc);
                 s = new Coordinates(-370+(450*i), 0);
                 e = new Coordinates(-56+(450*i), 0);
@@ -140,7 +140,6 @@ public class Game extends Application implements Initializable, Serializable {
                 t1.play();
             }
             else{
-
                 s = new Coordinates(-370+(450*i), 190);
                 e = new Coordinates(-56+(450*i), 190);
                 img.setTranslateX(-370+450*i);
@@ -153,7 +152,6 @@ public class Game extends Application implements Initializable, Serializable {
                 transitions1.add(t);
             }
             loc += 3;
-
 
         }
 
