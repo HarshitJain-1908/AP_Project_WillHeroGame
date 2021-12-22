@@ -330,7 +330,7 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
         //adding Boss
-        Image icon5 = new Image("Orc5.png");
+        Image icon5 = new Image("Boss.png");
         ImageView img5=new ImageView(icon5);
         img5.setFitWidth(200);
         img5.setFitHeight(200);
