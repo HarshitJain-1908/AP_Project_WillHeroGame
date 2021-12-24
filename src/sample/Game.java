@@ -78,19 +78,15 @@ public class Game extends Application implements Initializable, Serializable {
     private void placeGameObjects(MouseEvent event) throws IOException {
 
 
-        System.out.println("place ");
+        System.out.println("place "+heroTransition);
         Parent root = FXMLLoader.load(getClass().getResource("nayiGameScene.fxml"));
         StackPane pane=(StackPane)root;
 
         // instantiate hero
         myhero=instantiate_hero();
         pane.getChildren().add(myhero);
-        heroTransition.setNode(myhero);
-        heroTransition.setDuration(Duration.millis(500));
-        heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
-        //translate.setByX(50);
-        heroTransition.setByY(100);
-        heroTransition.setAutoReverse(true);
+        hero.jump(heroTransition);
+        //System.out.println("+ "+heroTransition);
 //        pane.getChildren().add(myhero);
 //        heroTransition.setNode(myhero);
 
@@ -119,25 +115,21 @@ public class Game extends Application implements Initializable, Serializable {
 
             }
             else if ((loc==6)||(loc==24)||(loc==39)||(loc==51)){ //4 moving islands
-                System.out.println("loc: "+loc);
+                //System.out.println("loc: "+loc);
                 s = new Coordinates(-370+(450*i), 0);
                 e = new Coordinates(-56+(450*i), 0);
                 img.setTranslateX(-370+450*i);
-                img.setTranslateY(0);
+                img.setTranslateY(95);
                 MovingIsland isd = new MovingIsland(i+1, s, e,img);
+                System.out.println(island.size());
                 island.add(isd);
                 pane.getChildren().add(img);
                 TranslateTransition t=new TranslateTransition();
                 t.setNode(img);
                 transitions1.add(t);
                 //set animation for Moving island
-                TranslateTransition t1=new TranslateTransition();
-                t1.setNode(img);
-                t1.setDuration(Duration.millis(1200));
-                t1.setByY(190);
-                t1.setCycleCount(TranslateTransition.INDEFINITE);
-                t1.setAutoReverse(true);
-                t1.play();
+                isd.move(new TranslateTransition());
+
             }
             else{
                 s = new Coordinates(-370+(450*i), 190);
@@ -160,7 +152,7 @@ public class Game extends Application implements Initializable, Serializable {
             ImageView img=new ImageView(icon);
             img.setFitWidth(314);
             img.setFitHeight(260);
-            Coordinates st1, e1, st2,  e2;
+            Coordinates st1, e1;
             st1 = new Coordinates(8630+(314*i), 190);
             e1 = new Coordinates(8630+(314*2*i), 190);
             img.setTranslateX(8630+(314*i));
@@ -221,7 +213,7 @@ public class Game extends Application implements Initializable, Serializable {
             else if (i==1){
                 s = new Coordinates(4200, 20);
             }
-            CoinChest c_chest = new CoinChest(i+27, s, 50,img2); //ids 25 and 26
+            CoinChest c_chest = new CoinChest(i+27, s, 50,img2); //ids 27 and 28
             chests.add(c_chest);
             pane.getChildren().add(img2);
             if (i==0){
@@ -230,11 +222,18 @@ public class Game extends Application implements Initializable, Serializable {
             else if (i==1){
                 img2.setTranslateX(4200);
             }
-            img2.setTranslateY(20);
+            img2.setTranslateY(-78);
+//            Group g=new Group();
+//            g.getChildren().add(img2);
+//            g.getChildren().add(island.get(2).getView());
+//            ((MovingIsland)island.get(2)).move(new TranslateTransition(),g);
             t=new TranslateTransition();
             t.setNode(img2);
             transitions3.add(t);
             loc_chest += 18; //second coin chest at 24
+            if(c_chest.getId()==27){
+                c_chest.move(new TranslateTransition());
+            }
         }
 
         loc_chest = 18;
@@ -379,21 +378,14 @@ public class Game extends Application implements Initializable, Serializable {
             spc += 3150;
         }
 
-        heroTransition.play();
+//        heroTransition.play();
         transitions.play();
-        System.out.println("size h: "+transitions4.size()+" "+transitions1.size());
-
-        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
+//        System.out.println("size h: "+transitions4.size()+" "+transitions1.size());
+//
+//        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
         for(int i=0;i<transitions4.size();i++){
             if(i!=orc.size()-1) {
-                //System.out.println("ok");
-                TranslateTransition t1 = new TranslateTransition();
-                t1.setNode(orc.get(i).getView());
-                t1.setDuration(Duration.millis(800));
-                t1.setCycleCount(TranslateTransition.INDEFINITE);
-                t1.setByY(320);
-                t1.setAutoReverse(true);
-                t1.play();
+                orc.get(i).move(new TranslateTransition());
             }else{
 //                TranslateTransition t1 = new TranslateTransition();
 //                t1.setNode(orc.get(i).getView());
@@ -420,9 +412,9 @@ public class Game extends Application implements Initializable, Serializable {
         img.setFitWidth(75);
         img.setFitHeight(75);
         img.setTranslateX(-450);
-        img.setTranslateY(-75);
-        hero=new Player(s,myhero);
-        System.out.println(hero+" hero :"+hero.getName());
+        img.setTranslateY(-85);
+        hero=new Player(s,img);
+        //System.out.println(myhero+" hero :"+hero.getName());
         return img;
     }
     public void startNewGame(ActionEvent e) throws IOException {
@@ -460,11 +452,16 @@ public class Game extends Application implements Initializable, Serializable {
 ////            System.out.println("collided");
 ////            return true;
 //        }
-//            if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
-//                System.out.println("collided");
-//                return true;
-//            }
-       // }
+//        if(i1.intersects(i2.getBoundsInParent())){
+//            System.out.println("collided");
+//            return true;
+//        }
+            if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
+                System.out.println("collided");
+                return true;
+//
+            }
+        //}
 //        if (myhero.getX() == x) {
 //            i1.setOpacity(0);
 //            i2.setOpacity(1);
@@ -564,51 +561,7 @@ public class Game extends Application implements Initializable, Serializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void check() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
-        StackPane pane=(StackPane) root;
-        Image icon = new Image("island.png");
-        ImageView island2=new ImageView(icon);
-        System.out.println("CHECK");
-        System.out.println(pane.getChildren());
-        //pane.getChildren().add(image);
-        System.out.println(pane.getChildren());
-        Image icon1=new Image("island.png");
-        ImageView i=new ImageView(icon1);
-        i.setFitWidth(314);
-        i.setFitHeight(260);
-        i.setX(0);
-        i.setY(0);
-        pane.getChildren().add(i);//pane.
 
-        Stage stage=new Stage();
-        Scene scene = new Scene(root,879,600);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void switchToGameScreen(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("gameScene.fxml"));
-        StackPane pane=(StackPane)root;
-        Image icon = new Image("island.png");
-        island2=new ImageView(icon);
-        island2.setFitWidth(314);
-        island2.setFitHeight(260);
-        island2.setTranslateX(520);
-        island2.setTranslateY(95);
-        pane.getChildren().add(island2);
-        translate2.setNode(island2);
-        System.out.println(island2.getTranslateX()+" "+island2.getTranslateY()+" "+island2.getX());
-        translate2.setDuration(Duration.millis(3000));
-        translate2.setByY(80);
-        translate2.setCycleCount(TranslateTransition.INDEFINITE);
-        translate2.setAutoReverse(true);
-        translate2.play();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     public void restart(ActionEvent e){
 
     }
@@ -629,34 +582,34 @@ public class Game extends Application implements Initializable, Serializable {
         placeGameObjects(e);
     }
 
-    public void moveScreen(int s){
+    public void moveScreen(){
         //animate game objects
         //System.out.println("s: "+island.size());
         for(int i=0;i<island.size();i++){
             //System.out.println("@ "+transitions1.get(i).getNode());
-            transitions1.get(i).setDuration(Duration.millis(300+1600*s));
-            transitions1.get(i).setByX(-57-57*8*s);
+            transitions1.get(i).setDuration(Duration.millis(300));
+            transitions1.get(i).setByX(-75);
             //System.out.print(transitions1.get(i).getByX()+" ");
             transitions1.get(i).play();
         }
         for(int i=0;i<obstacles.size();i++){
-            transitions2.get(i).setDuration(Duration.millis(300+1600*s));
-            transitions2.get(i).setByX(-57-57*8*s);
+            transitions2.get(i).setDuration(Duration.millis(300));
+            transitions2.get(i).setByX(-75);
             transitions2.get(i).play();
         }
         for(int i=0;i<chests.size();i++){
-            transitions3.get(i).setDuration(Duration.millis(300+1600*s));
-            transitions3.get(i).setByX(-57-57*8*s);
+            transitions3.get(i).setDuration(Duration.millis(300));
+            transitions3.get(i).setByX(-75);
             transitions3.get(i).play();
         }
         for(int i=0;i<orc.size();i++){
-            transitions4.get(i).setDuration(Duration.millis(300+1600*s));
-            transitions4.get(i).setByX(-57-57*8*s);
+            transitions4.get(i).setDuration(Duration.millis(300));
+            transitions4.get(i).setByX(-75);
             transitions4.get(i).play();
         }
         for(int i=0;i<coinl.size();i++){
-            transitions5.get(i).setDuration(Duration.millis(300+1600*s));
-            transitions5.get(i).setByX(-57-57*8*s);
+            transitions5.get(i).setDuration(Duration.millis(300));
+            transitions5.get(i).setByX(-75);
             transitions5.get(i).play();
         }
     }
@@ -669,8 +622,11 @@ public class Game extends Application implements Initializable, Serializable {
 //        t1.setAutoReverse(true);
 //        t1.play();
 //    }
-    public void movePlayer(MouseEvent e) throws IOException {
-        //moveScreen(1);
+    public void movePlayer(MouseEvent e) {
+
+        moveScreen();
+        hero.moveForward();
+        score.setText(Integer.toString(hero.getNumberOfMoves()));
         if(myhero.getTranslateX()>=5900){
             System.out.println(status);
             TranslateTransition t=new TranslateTransition();
@@ -699,19 +655,20 @@ public class Game extends Application implements Initializable, Serializable {
 //
 //            status1=false;
 //        }
-        System.out.println(myhero.getTranslateX()+" "+myhero.getX());
-        if((hero.getNumberOfMoves()%12==0) && (hero.getNumberOfMoves()!=0) ) {
-            TranslateTransition heroTransition1=new TranslateTransition();
-            heroTransition1.setNode(myhero);
-            hero.moveForward(heroTransition1,1);
-            moveScreen(1);
-        }
-        else{
-            TranslateTransition heroTransition1=new TranslateTransition();
-            heroTransition1.setNode(myhero);
-            hero.moveForward(heroTransition1,0);
-            moveScreen(0);
-        }
+        //System.out.println(myhero.getTranslateX()+" "+myhero.getX());
+        //moveScreen();
+//        if((hero.getNumberOfMoves()%12==0) && (hero.getNumberOfMoves()!=0) ) {
+//            TranslateTransition heroTransition1=new TranslateTransition();
+//            heroTransition1.setNode(myhero);
+//            //hero.moveForward(heroTransition1,1);
+//            moveScreen(1);
+//        }
+//        else{
+//            TranslateTransition heroTransition1=new TranslateTransition();
+//            heroTransition1.setNode(myhero);
+//            //hero.moveForward(heroTransition1,0);
+//            moveScreen(0);
+//        }
         for(int i=0;i<orc.size();i++){
             boolean status=collision(2,myhero,orc.get(i).getView());
             //System.out.println(status);
@@ -841,7 +798,7 @@ public class Game extends Application implements Initializable, Serializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //placeGameObjects();
-        System.out.println("initilaize");
+        //System.out.println("initilaize");
         //TranslateTransition translate = new TranslateTransition();
         //TranslateTransition translate1 = new TranslateTransition();
 //        translate.setNode(myhero);

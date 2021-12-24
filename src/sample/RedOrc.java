@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 
 public class RedOrc extends Orc {

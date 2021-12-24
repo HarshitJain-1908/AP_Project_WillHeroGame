@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 
 public class Island extends GameObjects {
@@ -8,7 +9,10 @@ public class Island extends GameObjects {
     public Island(int id, Coordinates c, Coordinates e, ImageView i){
         super(id,c,i);
         endCoord=e;
+    }
 
+    @Override
+    public void move(TranslateTransition t) {
 
     }
 }

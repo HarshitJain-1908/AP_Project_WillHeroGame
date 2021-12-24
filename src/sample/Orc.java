@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 abstract public class Orc extends GameObjects {
     private int power;
@@ -35,6 +37,16 @@ abstract public class Orc extends GameObjects {
     }
     public void jump(){
 
+    }
+    @Override
+    public void move(TranslateTransition t1){
+        this.t=t1;
+        t.setNode(me);
+        t.setDuration(Duration.millis(800));
+        t.setCycleCount(TranslateTransition.INDEFINITE);
+        t.setByY(320);
+        t.setAutoReverse(true);
+        t.play();
     }
 
     @Override

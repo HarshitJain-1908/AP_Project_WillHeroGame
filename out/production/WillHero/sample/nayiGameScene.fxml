@@ -18,7 +18,7 @@
             <Image url="@../pause_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="movebutton" fitHeight="60.0" fitWidth="56.0" onMouseClicked="#movePlayer" pickOnBounds="true" preserveRatio="true" translateX="-520.0" translateY="-250.0">
+      <ImageView fx:id="movebutton" fitHeight="46.0" fitWidth="40.0" onMouseClicked="#movePlayer" pickOnBounds="true" preserveRatio="true" translateX="-150.0" translateY="340.0">
          <image>
             <Image url="@../rightmove.jpeg" />
          </image>

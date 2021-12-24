@@ -20,8 +20,8 @@ public class Player {
 
 
     public Player(String s, ImageView i) {
-        jumpHeight = 1;
-        moveLength = 1;
+        jumpHeight = 120;
+        moveLength = 75;
         coins = 0;
         coord=new Coordinates(0,0);
         name=s;
@@ -29,23 +29,17 @@ public class Player {
         h=new Helmet();
         me=i;
     }
-    public void jump(){
-
+    public void jump(TranslateTransition heroTransition){
+        System.out.println("jump "+me);
+        heroTransition.setNode(me);
+        heroTransition.setDuration(Duration.millis(500));
+        heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        heroTransition.setByY(jumpHeight);
+        heroTransition.setAutoReverse(true);
+        heroTransition.play();
     }
-    public void moveForward(TranslateTransition t, int s){
+    public void moveForward(){
         numberOfMoves++;
-        setCoord(coord.getX()+moveLength, coord.getY());
-        t.setDuration(Duration.millis(150));
-        t.setByX(53);
-        t.play();
-        t.setDuration(Duration.millis(1600*s+150*s));
-        t.setByX(-57*10*s);
-        t.play();
-//        TranslateTransition t1=new TranslateTransition();
-//        t1.setNode(me);
-//        t1.setDuration(Duration.millis(1600*s+150*s));
-//        t1.setByX(-57*10*s);
-//        t1.play();
 
     }
     public String getName() {
