@@ -419,7 +419,12 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
     public boolean collision(int x, ImageView i1, ImageView i2){
-            if(i2.getBoundsInParent().intersects(i1.getBoundsInParent())){
+        //System.out.println("in collision");
+//        Group g=new Group();
+//        g.getChildren().add(i1);
+//        g.getChildren().add(i2);
+
+            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
                 System.out.println("collided");
                 return true;
 
@@ -577,22 +582,12 @@ public class Game extends Application implements Initializable, Serializable {
         moveScreen();
         hero.moveForward();
         score.setText(Integer.toString(hero.getNumberOfMoves()));
-        if(myhero.getTranslateX()>=5900) {
-            System.out.println(status);
-            TranslateTransition t = new TranslateTransition();
-            t.setNode(orc.get(orc.size() - 1).getView());
-            t.setDuration(Duration.millis(500));
-            t.setByY(460);
-            t.play();
-
 
             for (int i = 0; i < orc.size(); i++) {
+                //System.out.println("orc");
                 boolean status = collision(2, myhero, orc.get(i).getView());
                 //System.out.println(status);
             }
-
-        }
-
 
 
     }

@@ -38,11 +38,6 @@
             <Image url="@../island.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-200.0" translateY="-250.0">
-         <image>
-            <Image url="@../Coin.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="c_chest" fitHeight="108.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" translateX="120.0" translateY="27.0">
          <image>
             <Image url="@../ChestClosed.png" />
@@ -63,15 +58,20 @@
             <Image url="@../ChestOpen.png" />
          </image>
       </ImageView>
-      <Label fx:id="noOfCoins" prefHeight="56.0" prefWidth="27.0" text="0" textFill="YELLOW" translateX="-240.0" translateY="-250.0">
+      <Label fx:id="noOfCoins" prefHeight="56.0" prefWidth="27.0" text="0" textFill="YELLOW" translateX="-200.0" translateY="-271.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="50.0" />
+            <Font name="HP Simplified Jpan Regular" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="score" prefHeight="56.0" prefWidth="27.0" text="0" textFill="YELLOW" translateY="-250.0">
+      <Label fx:id="score" prefHeight="56.0" prefWidth="27.0" text="0" textFill="#00ff15" translateX="50.0" translateY="-271.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="50.0" />
+            <Font name="HP Simplified Jpan Regular" size="54.0" />
          </font>
       </Label>
+      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-150.0" translateY="-270.0">
+         <image>
+            <Image url="@../Coin.png" />
+         </image>
+      </ImageView>
    </children>
 </StackPane>
