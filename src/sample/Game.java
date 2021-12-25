@@ -461,6 +461,7 @@ public class Game extends Application implements Initializable, Serializable {
                 return true;
 //
             }
+
         //}
 //        if (myhero.getX() == x) {
 //            i1.setOpacity(0);
