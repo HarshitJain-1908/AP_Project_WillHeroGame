@@ -419,16 +419,27 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
     public boolean collision(int x, ImageView i1, ImageView i2){
-        //System.out.println("in collision");
-//        Group g=new Group();
-//        g.getChildren().add(i1);
-//        g.getChildren().add(i2);
+        System.out.println(i1.getX());
+        System.out.println(i2.getX());
+        if(i1.getX()==i2.getX()){
+            i2.setX(5);
+            TranslateTransition translate3 = new TranslateTransition();
+            translate3.setDuration(Duration.millis(30));
+            translate3.setNode(i2);
+            i2.setOpacity(0);
+            translate3.setByY(200);
+            i2.setOpacity(0);
+            coins+=10;
+            noOfCoins.setText(Integer.toString(coins));
+            translate3.play();
+        }
 
-            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                System.out.println("collided");
-                return true;
 
-            }
+//        if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+//            System.out.println("collided");
+//            return true;
+//
+//        }
 
         return false;
     }
