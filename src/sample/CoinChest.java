@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class CoinChest extends GameObjects implements Treasure {
     private int numberOfCoins;
@@ -9,6 +11,7 @@ public class CoinChest extends GameObjects implements Treasure {
         super(id,c,i);
         numberOfCoins=n;
     }
+
     @Override
     public void openTreasure(){
 

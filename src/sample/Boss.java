@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class Boss extends GreenOrc {
 
@@ -11,6 +13,16 @@ public class Boss extends GreenOrc {
     public void killHero(){
 
         //this function will kill the player
+    }
+    @Override
+    public void move(TranslateTransition t1){
+        this.t=t1;
+        t.setNode(me);
+        t.setDuration(Duration.millis(800));
+        t.setCycleCount(TranslateTransition.INDEFINITE);
+        t.setByY(100);
+        t.setAutoReverse(true);
+        t.play();
     }
     public void upDatePower(int p){
 

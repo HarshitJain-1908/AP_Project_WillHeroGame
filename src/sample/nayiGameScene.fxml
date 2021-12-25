@@ -23,19 +23,19 @@
             <Image url="@../rightmove.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="noOfCoins" text="0" textFill="YELLOW" translateX="-420.0" translateY="-335.0">
+      <Label fx:id="noOfCoins" text="0" textFill="YELLOW" translateX="-210.0" translateY="-322.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="50.0" />
+            <Font name="HP Simplified Jpan Regular" size="60.0" />
          </font>
       </Label>
-      <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" translateX="-380.0" translateY="-335.0">
+      <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-150.0" translateY="-320.0">
          <image>
             <Image url="@../Coin.png" />
          </image>
       </ImageView>
-      <Label fx:id="score" layoutX="539.0" layoutY="344.0" text="0" textFill="YELLOW" translateX="-50.0" translateY="-335.0">
+      <Label fx:id="score" layoutX="539.0" layoutY="344.0" text="0" textFill="YELLOW" translateX="20.0" translateY="-322.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="40.0" />
+            <Font name="HP Simplified Jpan Regular" size="60.0" />
          </font>
       </Label>
    </children>
