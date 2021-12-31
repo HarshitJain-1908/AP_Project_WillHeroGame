@@ -57,7 +57,9 @@ public class Game extends Application implements Initializable, Serializable {
     private String s="";
     private static ImageView myhero;
     private static boolean status=false, status1=false;
-
+    private static Parent root;
+    private static Stage stage;
+    private static Scene scene;
 
     public Game() {
 
@@ -79,7 +81,7 @@ public class Game extends Application implements Initializable, Serializable {
 
 
         System.out.println("place "+heroTransition);
-        Parent root = FXMLLoader.load(getClass().getResource("nayiGameScene.fxml"));
+        root = FXMLLoader.load(getClass().getResource("nayiGameScene.fxml"));
         StackPane pane=(StackPane)root;
 
         // instantiate hero
@@ -368,8 +370,10 @@ public class Game extends Application implements Initializable, Serializable {
             orc.get(i).move(new TranslateTransition());
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        //set initial island for hero
+        hero.setIsd(island.get(0));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setX(150);
         stage.setY(45);
@@ -573,16 +577,35 @@ public class Game extends Application implements Initializable, Serializable {
     }
 
     public void movePlayer(MouseEvent e) {
-
+        System.out.println(island.get(0).getView().getTranslateX());
         moveScreen();
         hero.moveForward();
         score.setText(Integer.toString(hero.getNumberOfMoves()));
+
+        //check island for hero
+        boolean iffall=hero.updateIsland(island);
+
+        if(iffall){
+
+            System.out.println(iffall);
+            //fall hero into the abyss
+            //hero.fall(heroTransition);
+            hero.fall(heroTransition);
+            //stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            //scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.setX(150);
+//            stage.setY(45);
+//            stage.show();
+        }
+        else {
 
             for (int i = 0; i < orc.size(); i++) {
                 //System.out.println("orc");
                 boolean status = collision(2, myhero, orc.get(i).getView());
                 //System.out.println(status);
             }
+        }
 
 
     }

@@ -27,7 +27,9 @@ abstract public class GameObjects {
     public TranslateTransition getT() {
         return t;
     }
-
+    public Coordinates getCoord(){
+        return coord;
+    }
     public void move(TranslateTransition t){
         this.t=t;
         t.setNode(me);

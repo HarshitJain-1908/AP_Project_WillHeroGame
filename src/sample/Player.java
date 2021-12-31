@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
+import java.util.LinkedList;
+
 public class Player {
     private int numberOfMoves;
     private final int jumpHeight;
@@ -16,7 +18,7 @@ public class Player {
     private Coordinates coord;
     private String name;
     private Game game;
-
+    private Island isd;
     private ImageView me;
 
 
@@ -39,10 +41,49 @@ public class Player {
         heroTransition.setAutoReverse(true);
         heroTransition.play();
     }
+    public void fall(TranslateTransition heroTransition){
+        System.out.println("fall");
+        heroTransition.setNode(me);
+        heroTransition.setDuration(Duration.millis(500));
+        //heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        heroTransition.setByY(1000);
+        //heroTransition.setAutoReverse(true);
+        heroTransition.play();
+    }
     public void moveForward(){
         numberOfMoves++;
 
     }
+    public boolean updateIsland(LinkedList<Island> i){
+       // int count=0;
+        System.out.println("current island "+isd+" "+i.size());
+        for(int j=0;j<i.size();j++) {
+
+            Island iland = i.get(j);
+            //System.out.println(iland.getView().get);
+            System.out.println((iland.getView().getTranslateX() - iland.getView().getFitWidth() / 2) + " "+(me.getTranslateX()-me.getFitWidth()/2) +" "+ (me.getTranslateX()+me.getFitWidth()/2) + (iland.getView().getTranslateX() + iland.getView().getFitWidth() / 2));
+            if (( (me.getTranslateX()-me.getFitWidth()/2) >= (iland.getView().getTranslateX() - iland.getView().getFitWidth() / 2)) &&
+                    ( (me.getTranslateX()+me.getFitWidth()/2) <= (iland.getView().getTranslateX() + iland.getView().getFitWidth() / 2))) {
+
+                setIsd(iland);System.out.println("island set "+isd);
+               // count = 1;
+                return false;
+
+            }
+        }
+
+            setIsd(null);
+            System.out.println("null h");
+            return true;
+    }
+    public Island getIsd() {
+        return isd;
+    }
+
+    public void setIsd(Island isd) {
+        this.isd = isd;
+    }
+
     public String getName() {
         return name;
     }
