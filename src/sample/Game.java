@@ -1,6 +1,7 @@
 package sample;
 
 import com.sun.javafx.geom.Shape;
+import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -85,9 +86,6 @@ public class Game extends Application implements Initializable, Serializable {
         StackPane pane=(StackPane)root;
 
         // instantiate hero
-        myhero=instantiate_hero();
-        pane.getChildren().add(myhero);
-        hero.jump(heroTransition);
 
         TranslateTransition transitions=new TranslateTransition();
         //placing islands - 22 islands in total
@@ -371,7 +369,12 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
         //set initial island for hero
+        myhero=instantiate_hero();
+        pane.getChildren().add(myhero);
         hero.setIsd(island.get(0));
+        hero.jump(heroTransition);
+
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -582,30 +585,52 @@ public class Game extends Application implements Initializable, Serializable {
         hero.moveForward();
         score.setText(Integer.toString(hero.getNumberOfMoves()));
 
+//        if(hero.getIsd()==null){
+//            heroTransition.setAutoReverse(false);
+//            heroTransition.setByY(300);
+//        }
         //check island for hero
-        boolean iffall=hero.updateIsland(island);
+//        boolean iffall=hero.updateIsland(island);
+//        TranslateTransition tt=new TranslateTransition();
+//        if(iffall){
+//
+//            tt.setNode(hero.getMe());
+//            tt.setAutoReverse(false);
+//            tt.setDuration(Duration.millis(3000));
+//            //tt.setCycleCount(Animation.INDEFINITE);
+//            tt.setByY(hero.getMe().getTranslateY()+600);
+//
+//            //hero.getMe().setTranslateY(300);
+//            heroTransition.stop();
+//            tt.play();
+//            System.out.println(iffall);
 
-        if(iffall){
 
-            System.out.println(iffall);
+
+//            heroTransition.setAutoReverse(false);
+//            heroTransition.setByY(300);
+//            heroTransition.play();
             //fall hero into the abyss
             //hero.fall(heroTransition);
-            hero.fall(heroTransition);
+            //hero.fall(heroTransition);
             //stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             //scene = new Scene(root);
 //            stage.setScene(scene);
 //            stage.setX(150);
 //            stage.setY(45);
 //            stage.show();
-        }
-        else {
+//        }
+//        else {
+//            tt.stop();
+//            heroTransition.play();
+
 
             for (int i = 0; i < orc.size(); i++) {
                 //System.out.println("orc");
                 boolean status = collision(2, myhero, orc.get(i).getView());
                 //System.out.println(status);
             }
-        }
+        //}
 
 
     }

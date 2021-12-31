@@ -45,7 +45,7 @@ public class Player {
         System.out.println("fall");
         heroTransition.setNode(me);
         heroTransition.setDuration(Duration.millis(500));
-        //heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
         heroTransition.setByY(1000);
         //heroTransition.setAutoReverse(true);
         heroTransition.play();
@@ -54,6 +54,11 @@ public class Player {
         numberOfMoves++;
 
     }
+
+    public ImageView getMe() {
+        return me;
+    }
+
     public boolean updateIsland(LinkedList<Island> i){
        // int count=0;
         System.out.println("current island "+isd+" "+i.size());
@@ -61,17 +66,30 @@ public class Player {
 
             Island iland = i.get(j);
             //System.out.println(iland.getView().get);
-            System.out.println((iland.getView().getTranslateX() - iland.getView().getFitWidth() / 2) + " "+(me.getTranslateX()-me.getFitWidth()/2) +" "+ (me.getTranslateX()+me.getFitWidth()/2) + (iland.getView().getTranslateX() + iland.getView().getFitWidth() / 2));
-            if (( (me.getTranslateX()-me.getFitWidth()/2) >= (iland.getView().getTranslateX() - iland.getView().getFitWidth() / 2)) &&
-                    ( (me.getTranslateX()+me.getFitWidth()/2) <= (iland.getView().getTranslateX() + iland.getView().getFitWidth() / 2))) {
 
-                setIsd(iland);System.out.println("island set "+isd);
-               // count = 1;
+            if (( (me.getTranslateX()-me.getFitWidth()/2) > (iland.getView().getTranslateX()-iland.getView().getFitWidth()/2)) &&
+                    ( (me.getTranslateX()+me.getFitWidth()/2)) < (iland.getView().getTranslateX()+iland.getView().getFitWidth()/2)) {
+                System.out.println((iland.getView().getTranslateX() - iland.getView().getFitWidth() / 2) + " " + (me.getTranslateX() - me.getFitWidth() / 2) + " " + (me.getTranslateX() + me.getFitWidth() / 2) + " " + (iland.getView().getTranslateX() + iland.getView().getFitWidth() / 2));
+                //System.out.println(iland.getView().getTranslateX());
+                //System.out.println((me.getTranslateX()-me.getFitWidth()/2)+" " +(iland.getView().getTranslateX() - iland.getView().getFitWidth()/2)+" "+(me.getTranslateX()+me.getFitWidth()/2)+" "+ (iland.getView().getTranslateX()+ iland.getView().getFitWidth()/2));
+                //System.out.println(me.getFitWidth());
+
+                setIsd(iland);
+                System.out.println("island set " + isd);
+                // count = 1;
                 return false;
-
             }
-        }
 
+//            }else{
+//                System.out.println("else");
+//                System.out.println((iland.getView().getTranslateX()-iland.getView().getFitWidth()/2) +" "+(me.getTranslateX()-me.getFitWidth()/2)+" "+(me.getTranslateX()+me.getFitWidth()/2)+" "+(iland.getView().getTranslateX()+iland.getView().getFitWidth()/2));
+//
+//                //System.out.println((me.getTranslateX()-me.getFitWidth()/2)+" " +(iland.getView().getTranslateX() - iland.getView().getFitWidth()/2)+" "+(me.getTranslateX()+me.getFitWidth()/2)+" "+ (iland.getView().getTranslateX()+ iland.getView().getFitWidth()/2));
+//
+//            }
+        }
+        //System.out.println((me.getTranslateX()-me.getFitWidth()/2)+" " +(iland.getView().getTranslateX() - iland.getView().getFitWidth()/2)+" "+(me.getTranslateX()+me.getFitWidth()/2)+" "+ (iland.getView().getTranslateX()+ iland.getView().getFitWidth()/2));
+        //System.out.println(me.getFitWidth());
             setIsd(null);
             System.out.println("null h");
             return true;
