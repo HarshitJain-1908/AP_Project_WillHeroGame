@@ -140,7 +140,7 @@ public class Player {
         }
         else if (s.equals("TNT")){
             if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                Image icon = new Image("bursting.jpeg");
+                Image icon = new Image("burst.png");
                 ImageView img=new ImageView(icon);
                 double a = i1.getTranslateX();
                 double b = i1.getTranslateY();
