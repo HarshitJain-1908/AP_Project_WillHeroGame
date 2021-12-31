@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -101,7 +102,54 @@ public class Player {
     public void exitGame(){
 
     }
-    public void CollideGameObject(GameObjects obj){
+    public void CollideGameObject(ImageView i1, ImageView i2, String s, int x){ //need to add these objects to linked list - a general gameObjects list
+        if (s.equals("c_chest")){
+            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+                Image icon = new Image("ChestOpen.png");
+                ImageView img=new ImageView(icon);
+                double a = i1.getTranslateX();
+                double b = i1.getTranslateY();
+                img.setTranslateX(a);
+                img.setTranslateY(b);
+                img.setOpacity(0);
+                i2.setOpacity(0);
+                img.setOpacity(1);
+                x += 50;
+            }
+        }
 
+        if (s.equals("w_chest")){ //not complete yet
+            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+                Image icon = new Image("ChestOpen.png");
+                ImageView img=new ImageView(icon);
+                double a = i1.getTranslateX();
+                double b = i1.getTranslateY();
+                img.setTranslateX(a);
+                img.setTranslateY(b);
+                img.setOpacity(0);
+                i2.setOpacity(0);
+                img.setOpacity(1);
+            }
+        }
+
+        else if (s.equals("coin")){
+            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+                i1.setOpacity(0);
+                x++;
+            }
+        }
+        else if (s.equals("TNT")){
+            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+                Image icon = new Image("bursting.jpeg");
+                ImageView img=new ImageView(icon);
+                double a = i1.getTranslateX();
+                double b = i1.getTranslateY();
+                img.setTranslateX(a);
+                img.setTranslateY(b);
+                img.setOpacity(0);
+                i2.setOpacity(0);
+                img.setOpacity(1);
+            }
+        }
     }
 }

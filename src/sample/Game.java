@@ -419,27 +419,11 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
     public boolean collision(int x, ImageView i1, ImageView i2){
-        System.out.println(i1.getX());
-        System.out.println(i2.getX());
-        if(i1.getX()==i2.getX()){
-            i2.setX(5);
-            TranslateTransition translate3 = new TranslateTransition();
-            translate3.setDuration(Duration.millis(30));
-            translate3.setNode(i2);
-            i2.setOpacity(0);
-            translate3.setByY(200);
-            i2.setOpacity(0);
-            coins+=10;
-            noOfCoins.setText(Integer.toString(coins));
-            translate3.play();
+
+        if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
+            System.out.println("collided");
+            return true;
         }
-
-
-//        if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-//            System.out.println("collided");
-//            return true;
-//
-//        }
 
         return false;
     }
@@ -558,7 +542,7 @@ public class Game extends Application implements Initializable, Serializable {
 
     public void moveScreen(){
         //animate game objects
-        //System.out.println("s: "+island.size());
+
         for(int i=0;i<island.size();i++){
             //System.out.println("@ "+transitions1.get(i).getNode());
             transitions1.get(i).setDuration(Duration.millis(300));
@@ -611,38 +595,7 @@ public class Game extends Application implements Initializable, Serializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //placeGameObjects();
-        //System.out.println("initilaize");
-        //TranslateTransition translate = new TranslateTransition();
-        //TranslateTransition translate1 = new TranslateTransition();
-//        translate.setNode(myhero);
-//        translate.setDuration(Duration.millis(500));
-//        translate.setCycleCount(TranslateTransition.INDEFINITE);
-//        //translate.setByX(50);
-//        translate.setByY(100);
-//        translate.setAutoReverse(true);
 
-        //LinkedList<TranslateTransition> lst=new LinkedList<>();
-//        System.out.println("size: "+transitions4.size()+" "+transitions1.size());
-//        for(int i=0;i<transitions4.size();i++){
-//            System.out.println("ok");
-//            TranslateTransition t=new TranslateTransition();
-//            t.setNode(orc.get(i).getView());
-//            t.setDuration(Duration.millis(600));
-//            t.setCycleCount(TranslateTransition.INDEFINITE);
-//            t.setByY(150);
-//            t.setAutoReverse(true);
-//            t.play();
-//        }
-
-//        translate1.setNode(gOrc);
-//        translate1.setDuration(Duration.millis(600));
-//        translate1.setCycleCount(TranslateTransition.INDEFINITE);
-//        //translate.setByX(50);
-//        translate1.setByY(150);
-//        translate1.setAutoReverse(true);
-//        translate1.play();
-//        translate.play();
     }
 
 }
