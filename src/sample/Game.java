@@ -677,10 +677,8 @@ public class Game extends Application implements Initializable, Serializable {
                transitions3.get(i).setNode(obstacles.get(i).getView1());
                obstacles.get(i).getView1().setOpacity(1);
                //over game or choose resurrect
-               overgame(obstacles.get(i).getView().getTranslateX());
-
-
-
+               overgame(obstacles.get(i));
+               obstacles.get(i).getView1().setOpacity(0);
            }
         }
 
@@ -711,7 +709,7 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
     }
-    public void overgame(double x) throws IOException {
+    public void overgame(GameObjects o) throws IOException {
 //        Parent root1 = FXMLLoader.load(getClass().getResource("overgame.fxml"));
 //        Stage stage=new Stage();
 //        Scene scene = new Scene(root1);
@@ -732,13 +730,13 @@ public class Game extends Application implements Initializable, Serializable {
             obstacles.get(i).getView().setOpacity(0);
         }
         for(int i=0;i<cchest.size();i++){
-            cchest.get(i).getView().setOpacity(0.2);
+            cchest.get(i).getView().setOpacity(0);
         }
         for(int i=0;i<wchest.size();i++){
-            wchest.get(i).getView().setOpacity(0.2);
+            wchest.get(i).getView().setOpacity(0);
         }
         for(int i=0;i<coinl.size();i++){
-            coinl.get(i).getView().setOpacity(0.2);
+            coinl.get(i).getView().setOpacity(0);
         }
         gameover.setOpacity(1);
         if(hero.getCoins()>=50) {
@@ -761,10 +759,8 @@ public class Game extends Application implements Initializable, Serializable {
         for(int i=0;i<orc.size();i++){
             orc.get(i).getView().setOpacity(1);
         }
-        for(int i=0;i<obstacles.size();i++){
-            obstacles.get(i).getView().setOpacity(1);
-        }
-        for(int i=0;i<cchest.size();i++){
+        obstacles.get(1).getView().setOpacity(1);
+        for(int i=1;i<cchest.size();i++){
             cchest.get(i).getView().setOpacity(1);
         }
         for(int i=0;i<wchest.size();i++){
