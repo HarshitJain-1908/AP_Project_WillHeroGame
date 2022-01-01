@@ -25,8 +25,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -49,12 +48,12 @@ public class Game extends Application implements Initializable, Serializable {
     private static long serialVersionUID;
 
     @FXML
-    private ImageView  movebutton, startbutton, playbutton, pausebutton, burst, bomb, island1, island2, island3, open_chest, c_chest, island4, myBoss, mycoin, myRorc, gOrc;
+    private ImageView movebutton, restartview, resumeview, saveview, exitview;
     @FXML
-    Label score, noOfCoins, gameover, resurrect;
+    Label score, noOfCoins, gameover, resurrect, restartbutton, resumebutton, savebutton, exiticon;
     TranslateTransition translate2=new TranslateTransition();
     @FXML
-    static Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, resumebutton, exiticon, gameinstr, exitinstr;
+    static Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, gameinstr, exitinstr;
 
     private static LinkedList<TranslateTransition> transitions1, transitions2, transitions3, transitions4, transitions5 ;
     private static TranslateTransition heroTransition;
@@ -450,20 +449,50 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
 
-    public void saveGame(){
-
+    public void loadGame() throws IOException, ClassNotFoundException {
+        deserialize();
     }
-    public void loadGame(){
-
+    public void saveGame(MouseEvent e) throws IOException {
+        serialize();
     }
     public void pauseGame(MouseEvent event) throws IOException {
         System.out.println("Game paused");
-        Parent root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setX(600);
-        stage.show();
+        restartview.setOpacity(1);
+        resumeview.setOpacity(1);
+        saveview.setOpacity(1);
+        exitview.setOpacity(1);
+        resumebutton.setOpacity(1);
+        restartbutton.setOpacity(1);
+        exiticon.setOpacity(1);
+        savebutton.setOpacity(1);
+        movebutton.setOpacity(0);
+        hero.getMe().setOpacity(0.2);
+        for(int i=0;i<island.size();i++){
+            island.get(i).getView().setOpacity(0.2);
+            //System.out.println("red island");
+        }
+        for(int i=0;i<orc.size();i++){
+            orc.get(i).getView().setOpacity(0.2);
+        }
+        for(int i=0;i<obstacles.size();i++){
+            obstacles.get(i).getView().setOpacity(0);
+        }
+        for(int i=0;i<cchest.size();i++){
+            cchest.get(i).getView().setOpacity(0);
+        }
+        for(int i=0;i<wchest.size();i++){
+            wchest.get(i).getView().setOpacity(0);
+        }
+        for(int i=0;i<coinl.size();i++){
+            coinl.get(i).getView().setOpacity(0);
+        }
+        //setGameobjectsOpacity(0);
+//        Parent root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.setX(600);
+//        stage.show();
     }
     public boolean collision(int x, ImageView i1, ImageView i2){
 
@@ -475,11 +504,45 @@ public class Game extends Application implements Initializable, Serializable {
         return false;
     }
 
-    public void resumeGame(){
-
+    public void resumeGame(MouseEvent e){
+        restartview.setOpacity(0);
+        resumeview.setOpacity(0);
+        saveview.setOpacity(0);
+        exitview.setOpacity(0);
+        resumebutton.setOpacity(0);
+        restartbutton.setOpacity(0);
+        exiticon.setOpacity(0);
+        savebutton.setOpacity(0);
+        hero.getMe().setOpacity(1);
+        movebutton.setOpacity(0);
+        for(int i=0;i<island.size();i++){
+            island.get(i).getView().setOpacity(1);
+            //System.out.println("red island");
+        }
+        for(int i=0;i<orc.size();i++){
+            orc.get(i).getView().setOpacity(1);
+        }
+        for(int i=0;i<obstacles.size();i++){
+            obstacles.get(i).getView().setOpacity(1);
+        }
+        for(int i=1;i<cchest.size();i++){
+            cchest.get(i).getView().setOpacity(1);
+        }
+        for(int i=0;i<wchest.size();i++){
+            wchest.get(i).getView().setOpacity(1);
+        }
+        for(int i=0;i<coinl.size();i++){
+            coinl.get(i).getView().setOpacity(1);
+        }
     }
-    public void restartGame(){
+    public void restartGame(MouseEvent e) throws IOException {
         // go to Main menu
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setX(600);
+        stage.show();
 
     }
 
@@ -508,11 +571,27 @@ public class Game extends Application implements Initializable, Serializable {
     public int getGid() {
         return gid;
     }
-    public void serialize()
-    {
+    public void serialize() throws IOException{
 
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("out.txt"));
+            out.writeObject(this);
+        }
+        finally {
+            out.close();
+        }
     }
-    public void deserialize(){
+    public void deserialize() throws IOException, ClassNotFoundException{
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream (new FileInputStream("out.txt"));
+            Game g= (Game) in.readObject();
+        }
+        finally {
+            in.close();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -566,18 +645,6 @@ public class Game extends Application implements Initializable, Serializable {
         stage.show();
     }
 
-
-    public void resume(ActionEvent e) throws IOException {
-        //MouseEvent e1=new MouseEvent();
-        //switchToGameScreen(e1);
-    }
-
-    public void save(ActionEvent e){
-
-    }
-    /*public void exit(ActionEvent e) throws IOException {
-        System.exit(0);
-    }*/
     public void play(MouseEvent e) throws IOException {
         System.out.println("Play Game");
         //switchToGameScreen(e);
@@ -676,6 +743,7 @@ public class Game extends Application implements Initializable, Serializable {
                obstacles.get(i).getView1().setTranslateY(obstacles.get(i).getView().getTranslateY());
                transitions3.get(i).setNode(obstacles.get(i).getView1());
                obstacles.get(i).getView1().setOpacity(1);
+               sleep(1000);
                //over game or choose resurrect
                overgame(obstacles.get(i));
                obstacles.get(i).getView1().setOpacity(0);
@@ -709,6 +777,28 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
     }
+    private void setGameobjectsOpacity(int s){
+        movebutton.setOpacity(s);
+        for(int i=0;i<island.size();i++){
+            island.get(i).getView().setOpacity(0.2 + 0.8*s);
+            //System.out.println("red island");
+        }
+        for(int i=0;i<orc.size();i++){
+            orc.get(i).getView().setOpacity(0.2+ 0.8*s);
+        }
+        for(int i=0;i<obstacles.size();i++){
+            obstacles.get(i).getView().setOpacity(s);
+        }
+        for(int i=0;i<cchest.size();i++){
+            cchest.get(i).getView().setOpacity(s);
+        }
+        for(int i=0;i<wchest.size();i++){
+            wchest.get(i).getView().setOpacity(s);
+        }
+        for(int i=0;i<coinl.size();i++){
+            coinl.get(i).getView().setOpacity(s);
+        }
+    }
     public void overgame(GameObjects o) throws IOException {
 //        Parent root1 = FXMLLoader.load(getClass().getResource("overgame.fxml"));
 //        Stage stage=new Stage();
@@ -717,11 +807,13 @@ public class Game extends Application implements Initializable, Serializable {
 //        stage.show();
 
         //reducing opacities of all game objects
-        System.out.println("reduce");
+        //System.out.println("reduce");
+        //setGameobjectsOpacity(0);
+        gameover.setOpacity(1);
         movebutton.setOpacity(0);
         for(int i=0;i<island.size();i++){
             island.get(i).getView().setOpacity(0.2);
-            System.out.println("red island");
+            //System.out.println("red island");
         }
         for(int i=0;i<orc.size();i++){
             orc.get(i).getView().setOpacity(0.2);
@@ -738,7 +830,6 @@ public class Game extends Application implements Initializable, Serializable {
         for(int i=0;i<coinl.size();i++){
             coinl.get(i).getView().setOpacity(0);
         }
-        gameover.setOpacity(1);
         if(hero.getCoins()>=50) {
             resurrect.setOpacity(1);
         }
@@ -754,7 +845,7 @@ public class Game extends Application implements Initializable, Serializable {
         movebutton.setOpacity(1);
         for(int i=0;i<island.size();i++){
             island.get(i).getView().setOpacity(1);
-            System.out.println("red island");
+            //System.out.println("red island");
         }
         for(int i=0;i<orc.size();i++){
             orc.get(i).getView().setOpacity(1);
@@ -773,6 +864,7 @@ public class Game extends Application implements Initializable, Serializable {
         hero.useCoins();
         noOfCoins.setText(Integer.toString(hero.getCoins()));
         hero.getMe().setOpacity(1);
+        heroTransition.setByY(heroTransition.getByY()-20);
         heroTransition.play();
 
     }

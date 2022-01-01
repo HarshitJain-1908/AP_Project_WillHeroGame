@@ -48,7 +48,14 @@ abstract public class GameObjects {
         t.play();
     }
     public void slide(){
-
+        System.out.println("slide");
+        TranslateTransition t=new TranslateTransition();
+        t.setNode(me);
+        t.setDuration(Duration.millis(1000));
+        t.setByX(50);
+        t.setCycleCount(TranslateTransition.INDEFINITE);
+        //t.setAutoReverse(true);
+        t.play();
     }
     @Override
     public boolean equals(Object o) {

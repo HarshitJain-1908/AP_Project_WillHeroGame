@@ -2,6 +2,8 @@ package sample;
 
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -191,7 +193,13 @@ public class Player {
         }
         else if (s.equals("TNT")){
             if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                //System.out.println(i2.getClass()+" "+i2);
+                i2.slide();
+//                TranslateTransition t=new TranslateTransition();
+//                t.setDuration(Duration.millis(2000));
+//                t.play();
                 i2.getView().setOpacity(0);
+                //t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
                 me.setOpacity(0);
                 i2.setFlag(true);
                 return 1;

@@ -22,9 +22,5 @@ public class Obstacle extends GameObjects {
     public void setTimer(int timer) {
         this.timer = timer;
     }
-    @Override
-    public void slide(){
-
-    }
 
 }
