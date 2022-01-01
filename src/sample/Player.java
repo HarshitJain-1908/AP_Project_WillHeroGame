@@ -9,6 +9,8 @@ import javafx.util.Duration;
 
 import java.util.LinkedList;
 
+import static java.lang.Thread.sleep;
+
 public class Player {
     private int numberOfMoves;
     private final int jumpHeight;
@@ -126,9 +128,9 @@ public class Player {
         return coins;
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
-    }
+//    //public void setCoins(int coins) {
+//        this.coins = coins;
+//    }
 
     public void setCoord(float x, float y) {
         coord.setX(x);
@@ -161,54 +163,39 @@ public class Player {
     public void exitGame(){
 
     }
-    public void CollideGameObject(ImageView i1, ImageView i2, String s, int x){ //need to add these objects to linked list - a general gameObjects list
+    public int CollideGameObject(GameObjects i2, String s){ //need to add these objects to linked list - a general gameObjects list
         if (s.equals("c_chest")){
-            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                Image icon = new Image("ChestOpen.png");
-                ImageView img=new ImageView(icon);
-                double a = i1.getTranslateX();
-                double b = i1.getTranslateY();
-                img.setTranslateX(a);
-                img.setTranslateY(b);
-                img.setOpacity(0);
-                i2.setOpacity(0);
-                img.setOpacity(1);
-                x += 50;
+            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                i2.getView().setOpacity(0);
+                coins += 50;
+                i2.setFlag(true);
+                return 1;
             }
         }
 
         if (s.equals("w_chest")){ //not complete yet
-            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                Image icon = new Image("ChestOpen.png");
-                ImageView img=new ImageView(icon);
-                double a = i1.getTranslateX();
-                double b = i1.getTranslateY();
-                img.setTranslateX(a);
-                img.setTranslateY(b);
-                img.setOpacity(0);
-                i2.setOpacity(0);
-                img.setOpacity(1);
+            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                i2.getView().setOpacity(0);
+                i2.setFlag(true);
+                return 1;
             }
         }
 
         else if (s.equals("coin")){
-            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                i1.setOpacity(0);
-                x++;
+            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                i2.getView().setOpacity(0);
+                i2.setFlag(true);
+                coins++;
             }
         }
         else if (s.equals("TNT")){
-            if(i1.getBoundsInParent().intersects(i2.getBoundsInParent())){
-                Image icon = new Image("burst.png");
-                ImageView img=new ImageView(icon);
-                double a = i1.getTranslateX();
-                double b = i1.getTranslateY();
-                img.setTranslateX(a);
-                img.setTranslateY(b);
-                img.setOpacity(0);
-                i2.setOpacity(0);
-                img.setOpacity(1);
+            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                i2.getView().setOpacity(0);
+                i2.setFlag(true);
+                return 1;
             }
         }
+
+        return 0;
     }
 }

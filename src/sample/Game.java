@@ -30,6 +30,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import static java.lang.Thread.sleep;
+
 public class Game extends Application implements Initializable, Serializable {
 
 
@@ -37,7 +39,8 @@ public class Game extends Application implements Initializable, Serializable {
     private static LinkedList<Island> island;
     private static LinkedList<Orc> orc;
     private static LinkedList<Obstacle> obstacles;
-    private static LinkedList<Treasure> chests;
+    private static LinkedList<CoinChest> cchest;
+    private static LinkedList<WeaponChest> wchest;
     private static LinkedList<Coin> coinl;
 
     private static int highScore;
@@ -54,7 +57,7 @@ public class Game extends Application implements Initializable, Serializable {
 
     private static LinkedList<TranslateTransition> transitions1, transitions2, transitions3, transitions4, transitions5 ;
     private static TranslateTransition heroTransition;
-    private int loc=0, coins=0;
+    private int loc=0;
     private String s="";
     private static ImageView myhero;
     private static boolean status=false, status1=false;
@@ -67,7 +70,8 @@ public class Game extends Application implements Initializable, Serializable {
         island=new LinkedList<>();
         orc=new LinkedList<>(); //all orcs including boss
         obstacles=new LinkedList<>(); //obstacles
-        chests=new LinkedList<>(); //chests
+        cchest=new LinkedList<>(); //coin chests
+        wchest=new LinkedList<>(); //weapon chests
         coinl = new LinkedList<>(); //coins
 //        placeGameObjects();
         transitions1=new LinkedList<>();
@@ -78,6 +82,8 @@ public class Game extends Application implements Initializable, Serializable {
         heroTransition=new TranslateTransition();
 
     }
+
+
     private void placeGameObjects(MouseEvent event) throws IOException {
 
 
@@ -168,11 +174,19 @@ public class Game extends Application implements Initializable, Serializable {
         ImageView img1=new ImageView(icon1);
         img1.setFitWidth(100);
         img1.setFitHeight(100);
+        Image icon01 = new Image("burst.png");
+        ImageView img01=new ImageView(icon01);
+        img01.setFitWidth(450);
+        img01.setFitHeight(450);
+        img01.setTranslateX(1500);
+        img01.setTranslateY(10);
+        img01.setOpacity(0);
+        pane.getChildren().add(img01);
         //adding obstacle - TNT
         Coordinates s1, s2;
         s1 = new Coordinates(1500, 10);
         s2 = new Coordinates(5500, 10);
-        Obstacle obst1 = new Obstacle(25, s1,img1);
+        Obstacle obst1 = new Obstacle(25, s1,img1, img01);
         img1.setTranslateX(1500);
         img1.setTranslateY(10);
         obstacles.add(obst1);
@@ -185,7 +199,15 @@ public class Game extends Application implements Initializable, Serializable {
         img1=new ImageView(icon1);
         img1.setFitWidth(100);
         img1.setFitHeight(100);
-        Obstacle obst2 = new Obstacle(26, s2,img1);
+        Image icon02 = new Image("burst.png");
+        ImageView img02=new ImageView(icon02);
+        img02.setFitWidth(450);
+        img02.setFitHeight(450);
+        img02.setTranslateX(8250);
+        img02.setTranslateY(10);
+        img02.setOpacity(0);
+        pane.getChildren().add(img02);
+        Obstacle obst2 = new Obstacle(26, s2,img1, img02);
         obstacles.add(obst2);
         pane.getChildren().add(img1);
         img1.setTranslateX(8250);
@@ -202,6 +224,12 @@ public class Game extends Application implements Initializable, Serializable {
             ImageView img2=new ImageView(icon2);
             img2.setFitWidth(120);
             img2.setFitHeight(90);
+            Image icon0 = new Image("ChestOpen.png");
+            ImageView img0=new ImageView(icon0);
+            img0.setFitWidth(120);
+            img0.setFitHeight(90);
+            img0.setOpacity(0);
+            pane.getChildren().add(img0);
             s = new Coordinates(0,0); //
             if (i==0){
                 s = new Coordinates(150, 20);
@@ -209,16 +237,19 @@ public class Game extends Application implements Initializable, Serializable {
             else if (i==1){
                 s = new Coordinates(4200, 20);
             }
-            CoinChest c_chest = new CoinChest(i+27, s, 50,img2); //ids 27 and 28
-            chests.add(c_chest);
+            CoinChest c_chest = new CoinChest(i+27, s, 50,img2, img0); //ids 27 and 28
+            cchest.add(c_chest);
             pane.getChildren().add(img2);
             if (i==0){
                 img2.setTranslateX(150);
+                img0.setTranslateX(150);
             }
             else if (i==1){
                 img2.setTranslateX(4200);
+                img0.setTranslateX(4200);
             }
             img2.setTranslateY(20);
+            img0.setTranslateY(20);
             t=new TranslateTransition();
             t.setNode(img2);
             transitions3.add(t);
@@ -232,6 +263,12 @@ public class Game extends Application implements Initializable, Serializable {
             ImageView img2 = new ImageView(icon2);
             img2.setFitWidth(120);
             img2.setFitHeight(90);
+            Image icon0 = new Image("ChestOpen.png");
+            ImageView img0=new ImageView(icon0);
+            img0.setFitWidth(120);
+            img0.setFitHeight(90);
+            img0.setOpacity(0);
+            pane.getChildren().add(img0);
             String[] arr = {"axe", "rocket", "axe"};
             if(i==1){
                 s = new Coordinates(6800, 20);
@@ -239,16 +276,19 @@ public class Game extends Application implements Initializable, Serializable {
             else{
                 s = new Coordinates(2300+(2900*i), 20);
             }
-            WeaponChest w_chest = new WeaponChest(i+29, s, arr[i],img2); //ids 27, 28 and 29
-            chests.add(w_chest);
+            WeaponChest w_chest = new WeaponChest(i+29, s, arr[i],img2, img0); //ids 27, 28 and 29
+            wchest.add(w_chest);
             pane.getChildren().add(img2);
             if(i==1){
                 img2.setTranslateX(6800);
+                img0.setTranslateX(6800);
             }
             else{
                 img2.setTranslateX(2300+(2900*i));
+                img0.setTranslateX(2300+(2900*i));
             }
             img2.setTranslateY(20);
+            img0.setTranslateY(20);
             t=new TranslateTransition();
             t.setNode(img2);
             transitions3.add(t);
@@ -562,7 +602,12 @@ public class Game extends Application implements Initializable, Serializable {
             transitions2.get(i).setByX(-75);
             transitions2.get(i).play();
         }
-        for(int i=0;i<chests.size();i++){
+        for(int i=0;i<cchest.size();i++){
+            transitions3.get(i).setDuration(Duration.millis(300));
+            transitions3.get(i).setByX(-75);
+            transitions3.get(i).play();
+        }
+        for(int i=0;i<wchest.size();i++){
             transitions3.get(i).setDuration(Duration.millis(300));
             transitions3.get(i).setByX(-75);
             transitions3.get(i).play();
@@ -577,14 +622,15 @@ public class Game extends Application implements Initializable, Serializable {
             transitions5.get(i).setByX(-75);
             transitions5.get(i).play();
         }
+
     }
 
-    public void movePlayer(MouseEvent e) {
+    public void movePlayer(MouseEvent e) throws InterruptedException {
         System.out.println(island.get(0).getView().getTranslateX());
         moveScreen();
         hero.moveForward();
         score.setText(Integer.toString(hero.getNumberOfMoves()));
-
+        noOfCoins.setText(Integer.toString(hero.getCoins()));
 //        if(hero.getIsd()==null){
 //            heroTransition.setAutoReverse(false);
 //            heroTransition.setByY(300);
@@ -625,13 +671,41 @@ public class Game extends Application implements Initializable, Serializable {
 //            heroTransition.play();
 
 
-            for (int i = 0; i < orc.size(); i++) {
-                //System.out.println("orc");
-                boolean status = collision(2, myhero, orc.get(i).getView());
-                //System.out.println(status);
-            }
-        //}
+        for (int i=0;i<obstacles.size();i++) {
+           int status =  hero.CollideGameObject(obstacles.get(i), "TNT");
+           if (status==1){
+               obstacles.get(i).getView1().setTranslateX(obstacles.get(i).getView().getTranslateX());
+               obstacles.get(i).getView1().setTranslateY(obstacles.get(i).getView().getTranslateY());
+               transitions3.get(i).setNode(obstacles.get(i).getView1());
+               obstacles.get(i).getView1().setOpacity(1);
+           }
+        }
 
+        for (int i=0;i<coinl.size();i++) {
+            hero.CollideGameObject(coinl.get(i), "coin");
+        }
+
+        for (int i=0;i<cchest.size();i++) {
+            int status = hero.CollideGameObject(cchest.get(i), "c_chest");
+            if (status==1){
+                cchest.get(i).getView1().setTranslateX(cchest.get(i).getView().getTranslateX());
+                cchest.get(i).getView1().setTranslateY(cchest.get(i).getView().getTranslateY());
+                transitions3.get(i).setNode(cchest.get(i).getView1());
+                cchest.get(i).getView1().setOpacity(1);
+
+            }
+        }
+
+        for (int i=0;i<wchest.size();i++) {
+            int status = hero.CollideGameObject(wchest.get(i), "w_chest");
+            if (status==1){
+                wchest.get(i).getView1().setTranslateX(wchest.get(i).getView().getTranslateX());
+                wchest.get(i).getView1().setTranslateY(wchest.get(i).getView().getTranslateY());
+                transitions3.get(i).setNode(wchest.get(i).getView1());
+                wchest.get(i).getView1().setOpacity(1);
+
+            }
+        }
 
     }
     public void overgame() throws IOException {

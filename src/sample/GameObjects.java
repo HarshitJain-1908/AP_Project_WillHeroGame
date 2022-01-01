@@ -7,6 +7,7 @@ import javafx.util.Duration;
 abstract public class GameObjects {
     private Coordinates coord;
     private int id;
+    private boolean flag;
 
     protected ImageView me;
     protected TranslateTransition t;
@@ -16,12 +17,19 @@ abstract public class GameObjects {
         this.id=id;
         me=i;
         t=new TranslateTransition();
+        flag = false;
     }
     public ImageView getView(){
         return me;
     }
     public int getId() {
         return id;
+    }
+    public boolean getFlag() {
+        return flag;
+    }
+    public boolean setFlag(boolean v) {
+        return flag=v;
     }
 
     public TranslateTransition getT() {
