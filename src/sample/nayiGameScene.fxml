@@ -23,7 +23,7 @@
             <Image url="@../rightmove.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="noOfCoins" text="0" textFill="YELLOW" translateX="-210.0" translateY="-322.0">
+      <Label fx:id="noOfCoins" text="0" textFill="YELLOW" translateX="-250.0" translateY="-322.0">
          <font>
             <Font name="HP Simplified Jpan Regular" size="60.0" />
          </font>
