@@ -158,7 +158,7 @@ public class Player {
 
     }
     public void useCoins(){
-
+        coins-=50;
     }
     public void exitGame(){
 
@@ -191,6 +191,7 @@ public class Player {
         else if (s.equals("TNT")){
             if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
                 i2.getView().setOpacity(0);
+                me.setOpacity(0);
                 i2.setFlag(true);
                 return 1;
             }

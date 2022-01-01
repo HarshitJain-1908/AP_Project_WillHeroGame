@@ -38,5 +38,15 @@
             <Font name="HP Simplified Jpan Regular" size="60.0" />
          </font>
       </Label>
+      <Label fx:id="gameover" opacity="0.0" text="GAME OVER" textFill="#ea1616" translateY="-75.0">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="resurrect" onMouseClicked="#resurrectHero" opacity="0.0" text="RESURRECT" textFill="#2ca41f" translateY="50.0">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="50.0" />
+         </font>
+      </Label>
    </children>
 </StackPane>

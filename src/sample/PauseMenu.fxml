@@ -25,7 +25,7 @@
                   <Image url="@../save_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="47.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" translateX="-120.0" translateY="30.0">
+            <ImageView fitHeight="46.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" translateX="-120.0" translateY="30.0">
                <image>
                   <Image url="@../exit_icon.png" />
                </image>
@@ -40,7 +40,7 @@
                   <Image url="@../resume_icon.png" />
                </image>
             </ImageView>
-            <Button fx:id="exiticon" mnemonicParsing="false" onAction="#backGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="EXIT" translateY="30.0">
+            <Button fx:id="exiticon" mnemonicParsing="false" onAction="#exitGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="EXIT" translateY="30.0">
                <font>
                   <Font name="HP Simplified Jpan Regular" size="23.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Font name="HP Simplified Jpan Regular" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="restartbutton" mnemonicParsing="false" onAction="#restart" onMouseClicked="#startNewGame" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="RESTART" translateY="-90.0">
+            <Button fx:id="restartbutton" mnemonicParsing="false" onAction="#restart" prefHeight="42.0" prefWidth="142.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 10; -fx-border-color: green; -fx-border-radius: 10; -fx-border-width: 2;" text="RESTART" translateY="-90.0">
                <font>
                   <Font name="HP Simplified Jpan Regular" size="23.0" />
                </font>

@@ -16,11 +16,11 @@ public class MovingIsland extends Island {
     public void move(TranslateTransition t1){
         //System.out.println("move island");
         this.t=t1;
-        t.setNode(me);
-        t.setDuration(Duration.millis(1200));
-        t.setByY(100);
-        t.setCycleCount(TranslateTransition.INDEFINITE);
-        t.setAutoReverse(true);
-        t.play();
+//        t.setNode(me);
+//        t.setDuration(Duration.millis(1200));
+//        t.setByY(100);
+//        t.setCycleCount(TranslateTransition.INDEFINITE);
+//        t.setAutoReverse(true);
+//        t.play();
     }
 }
