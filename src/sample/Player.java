@@ -10,11 +10,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
 
-public class Player {
+public class Player implements Serializable {
     private int numberOfMoves;
     private final int jumpHeight;
     private final int moveLength;
@@ -166,44 +167,87 @@ public class Player {
     public void exitGame(){
 
     }
-    public int CollideGameObject(GameObjects i2, String s){ //need to add these objects to linked list - a general gameObjects list
-        if (s.equals("c_chest")){
-            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
-                i2.getView().setOpacity(0);
-                coins += 50;
-                i2.setFlag(true);
-                return 1;
-            }
-        }
+    public int CollideGameObject(GameObjects i2, int id){ //need to add these objects to linked list - a general gameObjects list
 
-        if (s.equals("w_chest")){ //not complete yet
-            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
-                i2.getView().setOpacity(0);
-                i2.setFlag(true);
-                return 1;
-            }
-        }
+        //using Facade design pattern
+        switch(id){
 
-        else if (s.equals("coin")){
-            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
-                i2.getView().setOpacity(0);
-                i2.setFlag(true);
-                coins++;
-            }
-        }
-        else if (s.equals("TNT")){
-            if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
-                //System.out.println(i2.getClass()+" "+i2);
-                i2.slide();
+            case 25:
+            case 26:
+                //TNT
+                if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+
+                    //System.out.println(i2.getClass()+" "+i2);
+                    i2.slide(new TranslateTransition());
 //                TranslateTransition t=new TranslateTransition();
 //                t.setDuration(Duration.millis(2000));
 //                t.play();
-                i2.getView().setOpacity(0);
-                //t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
-                me.setOpacity(0);
-                i2.setFlag(true);
-                return 1;
+                    i2.getView().setOpacity(0.5);
+                    //t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
+                    me.setOpacity(0);
+                    i2.setFlag(true);
+                    return 1;
+                }
+                break;
+            case 27:
+            case 28:
+                //Coin Chest
+                if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                    System.out.println("chest collision");
+                    i2.getView().setOpacity(0);
+                    coins += 50;
+                    i2.setFlag(true);
+                    return 1;
+                }
+                break;
+            case 29:
+            case 30:
+            case 31:
+                //Weapon Chest
+                if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                    i2.getView().setOpacity(0);
+                    i2.setFlag(true);
+                    switch(id){
+                        case 29:
+                            //Rocket chest
+                            h.getWeapon().get(1).setWeaponActiveStatus(true);
+
+                        case 30:
+                            //Axe chest
+                        case 31:
+                            //Rocket chest
+                    }
+                    return 1;
+                }
+                break;
+            case 43:
+            case 44:
+            case 45:
+            case 46:
+            case 47:
+                //Coin
+                if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
+                    i2.getView().setOpacity(0);
+                    i2.setFlag(true);
+                    coins++;
+                }
+                break;
+
+        }
+        if(i2 instanceof Orc){
+
+            //check for collision with orc
+            //if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){System.out.println("aaya");
+            if( (me.getTranslateX()+me.getFitWidth()/2) > (i2.getView().getTranslateX()-i2.getView().getFitWidth()/2)){
+                System.out.println("aaya");
+                if( ((me.getTranslateY()+me.getFitHeight()/2) > (i2.getView().getTranslateY()-i2.getView().getFitHeight()/2))
+                && ((me.getTranslateY()-me.getFitHeight()/2) > (i2.getView().getTranslateY()+i2.getView().getFitHeight()/2)) ){
+                    System.out.println("collided with orc");
+                    i2.setFlag(true);
+                    return 1;
+                }
             }
+
         }
 
         return 0;

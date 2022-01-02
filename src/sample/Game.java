@@ -2,6 +2,7 @@ package sample;
 
 import com.sun.javafx.geom.Shape;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -276,7 +277,7 @@ public class Game extends Application implements Initializable, Serializable {
             else{
                 s = new Coordinates(2300+(2900*i), 20);
             }
-            WeaponChest w_chest = new WeaponChest(i+29, s, arr[i],img2, img0); //ids 27, 28 and 29
+            WeaponChest w_chest = new WeaponChest(i+29, s, arr[i],img2, img0); //ids 29, 30, 31
             wchest.add(w_chest);
             pane.getChildren().add(img2);
             if(i==1){
@@ -690,7 +691,7 @@ public class Game extends Application implements Initializable, Serializable {
     }
 
     public void movePlayer(MouseEvent e) throws InterruptedException, IOException {
-        System.out.println(island.get(0).getView().getTranslateX());
+        //System.out.println(island.get(0).getView().getTranslateX());
         moveScreen();
         hero.moveForward();
         score.setText(Integer.toString(hero.getNumberOfMoves()));
@@ -734,28 +735,54 @@ public class Game extends Application implements Initializable, Serializable {
 //            tt.stop();
 //            heroTransition.play();
 
+        for (int i=0;i<orc.size();i++) {
+            int finalI = i;
+//            AnimationTimer collisionTimer=new AnimationTimer() {
+//                @Override
+//                public void handle(long l) {
+//                    //checkCollisionChest(myImage,chest);
+//                    int status =  hero.CollideGameObject(orc.get(finalI), orc.get(finalI).getId());
+//                    if(status==1){
+//                        System.out.println("1 hai");
+//                        try {
+//                            overgame(orc.get(finalI));
+//                        } catch (IOException ioException) {
+//                            ioException.printStackTrace();
+//                        }
+//                    }
+//                }
+//            };
+            int status =  hero.CollideGameObject(orc.get(i), orc.get(i).getId());
+          if(status==1){
+              System.out.println("1 hai");
+              orc.get(i).slide(new TranslateTransition());
+              overgame(orc.get(i));
+          }
+
+        }
 
         for (int i=0;i<obstacles.size();i++) {
-           int status =  hero.CollideGameObject(obstacles.get(i), "TNT");
+           int status =  hero.CollideGameObject(obstacles.get(i), obstacles.get(i).getId());
            if (status==1){
                heroTransition.stop();
                obstacles.get(i).getView1().setTranslateX(obstacles.get(i).getView().getTranslateX()-65);
                obstacles.get(i).getView1().setTranslateY(obstacles.get(i).getView().getTranslateY());
                transitions3.get(i).setNode(obstacles.get(i).getView1());
-               obstacles.get(i).getView1().setOpacity(1);
                sleep(1000);
+               obstacles.get(i).getView1().setOpacity(1);
+               obstacles.get(i).getView().setOpacity(0);
                //over game or choose resurrect
                overgame(obstacles.get(i));
-               obstacles.get(i).getView1().setOpacity(0);
+               //obstacles.get(i).getView1().setOpacity(0);
            }
         }
 
         for (int i=0;i<coinl.size();i++) {
-            hero.CollideGameObject(coinl.get(i), "coin");
+            hero.CollideGameObject(coinl.get(i), coinl.get(i).getId());
         }
 
         for (int i=0;i<cchest.size();i++) {
-            int status = hero.CollideGameObject(cchest.get(i), "c_chest");
+            int status = hero.CollideGameObject(cchest.get(i), cchest.get(i).getId());
             if (status==1){
                 cchest.get(i).getView1().setTranslateX(cchest.get(i).getView().getTranslateX()-65);
                 cchest.get(i).getView1().setTranslateY(cchest.get(i).getView().getTranslateY());
@@ -766,7 +793,7 @@ public class Game extends Application implements Initializable, Serializable {
         }
 
         for (int i=0;i<wchest.size();i++) {
-            int status = hero.CollideGameObject(wchest.get(i), "w_chest");
+            int status = hero.CollideGameObject(wchest.get(i), wchest.get(i).getId());
             if (status==1){
                 wchest.get(i).getView1().setTranslateX(wchest.get(i).getView().getTranslateX()-65);
                 wchest.get(i).getView1().setTranslateY(wchest.get(i).getView().getTranslateY());
@@ -774,6 +801,12 @@ public class Game extends Application implements Initializable, Serializable {
                 wchest.get(i).getView1().setOpacity(1);
 
             }
+        }
+        if(hero.getH().getWeapon().get(0).getWeaponActiveStatus()){
+            hero.getH().getWeapon().get(0).useWeapon(hero.getMe().getTranslateX());
+        }
+        if(hero.getH().getWeapon().get(1).getWeaponActiveStatus()){
+            hero.getH().getWeapon().get(1).useWeapon(hero.getMe().getTranslateX());
         }
 
     }
@@ -830,14 +863,18 @@ public class Game extends Application implements Initializable, Serializable {
         for(int i=0;i<coinl.size();i++){
             coinl.get(i).getView().setOpacity(0);
         }
-        if(hero.getCoins()>=50) {
-            resurrect.setOpacity(1);
-        }
-        else{
-            //game over
-            System.exit(0);
-        }
+        if(o instanceof Obstacle) {
 
+            if (hero.getCoins() >= 50) {
+                resurrect.setOpacity(1);
+            } else {
+                //game over
+                System.exit(0);
+            }
+        }
+        else if(o instanceof Orc){
+            resurrect.setOpacity(0.5);
+        }
     }
     public void resurrectHero(MouseEvent e){
         gameover.setOpacity(0);

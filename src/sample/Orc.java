@@ -50,7 +50,13 @@ abstract public class Orc extends GameObjects {
     }
 
     @Override
-    public void slide(){
+    public void slide(TranslateTransition t1){
+        t1.setNode(me);
+        t1.setDuration(Duration.millis(800));
+        t1.setCycleCount(TranslateTransition.INDEFINITE);
+        t1.setByX(75);
+        //t1.setAutoReverse(true);
+        t1.play();
 
     }
     abstract public void killHero();

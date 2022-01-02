@@ -15,5 +15,7 @@ public class Helmet {
 
     }
 
-
+    public ArrayList<Weapon> getWeapon() {
+        return weapon;
+    }
 }

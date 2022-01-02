@@ -6,7 +6,7 @@ public class Axe extends Weapon {
         super("Axe");
     }
     @Override
-    public void useWeapon(){
+    public void useWeapon(double x){
 
     }
 }
