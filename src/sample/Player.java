@@ -244,7 +244,6 @@ public class Player implements Serializable {
         if(i2 instanceof Orc){
 
             //check for collision with orc
-            //if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){System.out.println("aaya");
             if( (me.getTranslateX()+me.getFitWidth()/2) > (i2.getView().getTranslateX()-i2.getView().getFitWidth()/2)){
                 System.out.println("aaya");
                 if( ((me.getTranslateY()+me.getFitHeight()/2) > (i2.getView().getTranslateY()-i2.getView().getFitHeight()/2))
