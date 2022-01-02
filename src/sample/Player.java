@@ -44,17 +44,21 @@ public class Player implements Serializable {
         if (player == null) {
             player = new Player(s,i);
         }
+        else if(player.name!=s || player.me!=i ){
+            player = new Player(s,i);
+        }
         return player;
     }
 
     public void jump(TranslateTransition heroTransition){
-        System.out.println("jump "+me);
+       // System.out.println("jump "+me);
         heroTransition.setNode(me);
         heroTransition.setDuration(Duration.millis(500));
         heroTransition.setCycleCount(TranslateTransition.INDEFINITE);
         heroTransition.setByY(jumpHeight);
         heroTransition.setAutoReverse(true);
         heroTransition.play();
+       // System.out.println("hero "+heroTransition);
     }
     public void fall(TranslateTransition heroTransition){
         System.out.println("fall");
@@ -76,7 +80,7 @@ public class Player implements Serializable {
 
     public boolean updateIsland(LinkedList<Island> i){
        // int count=0;
-        System.out.println("current island "+isd+" "+i.size());
+        //System.out.println("current island "+isd+" "+i.size());
         for(int j=0;j<i.size();j++) {
 
             Island iland = i.get(j);
@@ -90,7 +94,7 @@ public class Player implements Serializable {
                 //System.out.println(me.getFitWidth());
 
                 setIsd(iland);
-                System.out.println("island set " + isd);
+               // System.out.println("island set " + isd);
                 // count = 1;
                 return false;
             }
@@ -106,7 +110,7 @@ public class Player implements Serializable {
         //System.out.println((me.getTranslateX()-me.getFitWidth()/2)+" " +(iland.getView().getTranslateX() - iland.getView().getFitWidth()/2)+" "+(me.getTranslateX()+me.getFitWidth()/2)+" "+ (iland.getView().getTranslateX()+ iland.getView().getFitWidth()/2));
         //System.out.println(me.getFitWidth());
             setIsd(null);
-            System.out.println("null h");
+            //System.out.println("null h");
             return true;
     }
     public Island getIsd() {
@@ -176,7 +180,7 @@ public class Player implements Serializable {
     public void exitGame(){
 
     }
-    public int CollideGameObject(GameObjects i2, int id){ //need to add these objects to linked list - a general gameObjects list
+    public int CollideGameObject(GameObjects i2, int id){
 
         //using Facade design pattern
         switch(id){
@@ -187,11 +191,13 @@ public class Player implements Serializable {
                 if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
 
                     TranslateTransition t=new TranslateTransition();
-                    t.setDuration(Duration.seconds(5));
-                    t.play();
                     i2.getView().setOpacity(0.5);
+                    t.setDuration(Duration.seconds(2));
                     t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
-                    //me.setOpacity(0);
+                    if(id==25) {
+                        me.setOpacity(0);
+                    }
+                    t.play();
                     i2.setFlag(true);
                     return 1;
                 }
@@ -200,7 +206,7 @@ public class Player implements Serializable {
             case 28:
                 //Coin Chest
                 if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
-                    System.out.println("chest collision");
+                    //System.out.println("chest collision");
                     i2.getView().setOpacity(0);
                     coins += 50;
                     i2.setFlag(true);
@@ -244,17 +250,23 @@ public class Player implements Serializable {
         if(i2 instanceof Orc){
 
             //check for collision with orc
-            if( (me.getTranslateX()+me.getFitWidth()/2) > (i2.getView().getTranslateX()-i2.getView().getFitWidth()/2)){
-                System.out.println("aaya");
-                if( ((me.getTranslateY()+me.getFitHeight()/2) > (i2.getView().getTranslateY()-i2.getView().getFitHeight()/2))
-                && ((me.getTranslateY()-me.getFitHeight()/2) > (i2.getView().getTranslateY()+i2.getView().getFitHeight()/2)) ){
-                    System.out.println("collided with orc");
-                    i2.setFlag(true);
-                    return 1;
-                }
+
+                    if ((me.getTranslateX() + me.getFitWidth() / 2) > (i2.getView().getTranslateX() - i2.getView().getFitWidth() / 2)) {
+                        //System.out.println("aaya");
+                        if (((me.getTranslateY() + me.getFitHeight() / 2) >= (i2.getView().getTranslateY() - i2.getView().getFitHeight() / 2))
+                                && ((me.getTranslateY() - me.getFitHeight() / 2) <= (i2.getView().getTranslateY() + i2.getView().getFitHeight() / 2))) {
+                            //System.out.println("collided with orc");
+
+                            coins += 10;
+                            if(i2 instanceof Boss){
+                                coins+=90;
+                            }
+                            i2.setFlag(true);
+                            return 1;
+                        }
+                    }
             }
 
-        }
 
         return 0;
     }

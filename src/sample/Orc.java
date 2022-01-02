@@ -35,12 +35,11 @@ abstract public class Orc extends GameObjects {
     public int getSize() {
         return size;
     }
-    public void jump(){
 
-    }
     @Override
     public void move(TranslateTransition t1){
         this.t=t1;
+        //System.out.println("move orc");
         t.setNode(me);
         t.setDuration(Duration.millis(800));
         t.setCycleCount(TranslateTransition.INDEFINITE);
@@ -49,15 +48,6 @@ abstract public class Orc extends GameObjects {
         t.play();
     }
 
-    @Override
-    public void slide(TranslateTransition t1){
-        t1.setNode(me);
-        t1.setDuration(Duration.millis(800));
-        t1.setCycleCount(TranslateTransition.INDEFINITE);
-        t1.setByX(75);
-        //t1.setAutoReverse(true);
-        t1.play();
 
-    }
     abstract public void killHero();
 }
