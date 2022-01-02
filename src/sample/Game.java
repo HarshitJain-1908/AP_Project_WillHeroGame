@@ -180,7 +180,7 @@ public class Game extends Application implements Initializable, Serializable {
         Image icon01 = new Image("burst.png");
         ImageView img01=new ImageView(icon01);
         img01.setFitWidth(450);
-        img01.setFitHeight(450);
+        img01.setFitHeight(600);
         img01.setTranslateX(1500);
         img01.setTranslateY(10);
         img01.setOpacity(0);
@@ -574,27 +574,38 @@ public class Game extends Application implements Initializable, Serializable {
     public int getGid() {
         return gid;
     }
-    public void serialize() throws IOException{
 
+
+    public void serialize() throws IOException {
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("out.txt"));
             out.writeObject(this);
-        }
-        finally {
+        } finally {
+            assert out != null;
             out.close();
         }
     }
-    public void deserialize() throws IOException, ClassNotFoundException{
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream (new FileInputStream("out.txt"));
-            Game g= (Game) in.readObject();
-        }
-        finally {
-            in.close();
-        }
 
+    public void deserialize() throws ClassNotFoundException, IOException, ClassCastException {
+        ObjectInputStream in = null;
+        FileInputStream fil = null;
+        Game g;
+        try {
+            in = new ObjectInputStream(new FileInputStream("out.txt"));
+            g = (Game) in.readObject();
+            in.close();
+        } catch (NullPointerException e) {
+            g = new Game();
+        } catch (FileNotFoundException e) {
+            g = new Game();
+        }
+        catch(Exception e){
+            g = new Game();
+        } finally {
+            if (in != null)
+                in.close();
+        }
     }
 
     public static void main(String[] args) {
@@ -657,8 +668,6 @@ public class Game extends Application implements Initializable, Serializable {
     public void moveScreen(){
         //animate game objects
 
-        Iterator it1 = transitions1.iterator();
-        Iterator it3 = transitions3.iterator();
 
         for(int i=0;i<island.size();i++){
             transitions1.get(i).setDuration(Duration.millis(300));

@@ -186,13 +186,11 @@ public class Player implements Serializable {
                 //TNT
                 if(me.getBoundsInParent().intersects(i2.getView().getBoundsInParent()) && i2.getFlag()==false){
 
-                    //System.out.println(i2.getClass()+" "+i2);
-                    i2.slide(new TranslateTransition());
-//                TranslateTransition t=new TranslateTransition();
-//                t.setDuration(Duration.millis(2000));
-//                t.play();
+                    TranslateTransition t=new TranslateTransition();
+                    t.setDuration(Duration.seconds(5));
+                    t.play();
                     i2.getView().setOpacity(0.5);
-                    //t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
+                    t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
                     //me.setOpacity(0);
                     i2.setFlag(true);
                     return 1;

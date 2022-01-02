@@ -43,32 +43,32 @@
             <Font name="HP Simplified Jpan Regular" size="96.0" />
          </font>
       </Label>
-      <Label fx:id="resurrect" onMouseClicked="#resurrectHero" opacity="0.0" style="-fx-background-color: yellow; -fx-border-radius: 20;" text="RESURRECT" textFill="#2ca41f" translateY="50.0">
+      <Label fx:id="resurrect" onMouseClicked="#resurrectHero" opacity="0.0" style="-fx-background-color: white; -fx-label-padding: 3; -fx-background-radius: 20; -fx-border-color: green; -fx-border-width: 3; -fx-border-radius: 10;" text="RESURRECT" textFill="GREEN" translateX="-200.0" translateY="50.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="50.0" />
+            <Font name="HP Simplified Jpan Regular" size="37.0" />
          </font>
       </Label>
-      <ImageView fx:id="resumeview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#resumeGame" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="-350.0" translateY="-150.0">
+      <ImageView fx:id="resumeview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#resumeGame" opacity="0.04" pickOnBounds="true" preserveRatio="true" translateX="-360.0" translateY="-150.0">
          <image>
             <Image url="@../resume_icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="resumebutton" opacity="0.0" text="RESUME" textFill="#e42b06" translateX="-250.0" translateY="-150.0">
+      <Label fx:id="resumebutton" alignment="CENTER" opacity="0.0" prefHeight="51.0" prefWidth="158.0" style="-fx-background-color: WHITE; -fx-label-padding: 5; -fx-background-radius: 20; -fx-border-color: green; -fx-border-width: 3; -fx-border-radius: 20;" text="RESUME" textFill="GREEN" translateX="-250.0" translateY="-150.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="25.0" />
+            <Font name="HP Simplified Jpan Regular" size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="restartview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#restartGame" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-150.0">
+      <ImageView fx:id="restartview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#restartGame" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-150.0">
          <image>
             <Image url="@../restart_icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="restartbutton" opacity="0.0" text="RESTART" textFill="#e42b06" translateX="150.0" translateY="-150.0">
+      <Label fx:id="restartbutton" alignment="CENTER" opacity="0.0" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: white; -fx-label-padding: 5; -fx-background-radius: 20; -fx-border-color: green; -fx-border-width: 3; -fx-border-radius: 20;" text="RESTART" textFill="GREEN" translateX="150.0" translateY="-150.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="25.0" />
+            <Font name="HP Simplified Jpan Regular" size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="saveview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#saveGame" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="-350.0" translateY="-25.0">
+      <ImageView fx:id="saveview" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#saveGame" opacity="0.0" pickOnBounds="true" preserveRatio="true" translateX="-360.0" translateY="-25.0">
          <image>
             <Image url="@../save_icon.png" />
          </image>
@@ -78,14 +78,19 @@
             <Image url="@../exit_icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="savebutton" layoutX="509.0" layoutY="357.0" opacity="0.0" text="SAVE GAME" textFill="#e42b06" translateX="-250.0" translateY="-25.0">
+      <Label fx:id="savebutton" alignment="CENTER" layoutX="509.0" layoutY="357.0" opacity="0.0" prefHeight="51.0" prefWidth="167.0" style="-fx-background-color: white; -fx-label-padding: 5; -fx-background-radius: 20; -fx-border-color: green; -fx-border-width: 3; -fx-border-radius: 20;" text="SAVE GAME" textFill="GREEN" translateX="-245.0" translateY="-25.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="25.0" />
+            <Font name="HP Simplified Jpan Regular" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="exiticon" layoutX="509.0" layoutY="357.0" opacity="0.0" text="EXIT" textFill="#e42b06" translateX="150.0" translateY="-25.0">
+      <Label fx:id="exiticon" alignment="CENTER" layoutX="509.0" layoutY="357.0" opacity="0.0" prefHeight="51.0" prefWidth="128.0" style="-fx-background-color: white; -fx-label-padding: 5; -fx-background-radius: 20; -fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3;" text="EXIT" textFill="#e42b06" translateX="150.0" translateY="-25.0">
          <font>
-            <Font name="HP Simplified Jpan Regular" size="25.0" />
+            <Font name="HP Simplified Jpan Regular" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="restartbutton1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#restartGame" opacity="0.0" prefHeight="54.0" prefWidth="194.0" style="-fx-background-color: white; -fx-label-padding: 3; -fx-background-radius: 20; -fx-border-color: #190080; -fx-border-width: 3; -fx-border-radius: 10;" text="RESTART" textAlignment="CENTER" textFill="#190080" translateX="75.0" translateY="50.0">
+         <font>
+            <Font name="HP Simplified Jpan Regular" size="37.0" />
          </font>
       </Label>
    </children>

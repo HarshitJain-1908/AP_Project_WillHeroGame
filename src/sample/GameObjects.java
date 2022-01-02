@@ -51,12 +51,10 @@ abstract public class GameObjects implements Serializable {
     }
     public void slide(TranslateTransition t){
         System.out.println("slide");
-        //TranslateTransition t=new TranslateTransition();
         t.setNode(me);
         t.setDuration(Duration.millis(1000));
         t.setByX(50);
         t.setCycleCount(TranslateTransition.INDEFINITE);
-        //t.setAutoReverse(true);
         t.play();
     }
     @Override
