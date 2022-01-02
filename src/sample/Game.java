@@ -27,6 +27,7 @@ import javafx.scene.shape.*;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
@@ -42,6 +43,7 @@ public class Game extends Application implements Initializable, Serializable {
     private static LinkedList<CoinChest> cchest;
     private static LinkedList<WeaponChest> wchest;
     private static LinkedList<Coin> coinl;
+    private volatile static Game myGame;
 
     private static int highScore;
     private int gid;
@@ -65,7 +67,7 @@ public class Game extends Application implements Initializable, Serializable {
     private static Stage stage;
     private static Scene scene;
 
-    public Game() {
+    private Game() {
 
         island=new LinkedList<>();
         orc=new LinkedList<>(); //all orcs including boss
@@ -81,6 +83,13 @@ public class Game extends Application implements Initializable, Serializable {
         transitions5=new LinkedList<>();
         heroTransition=new TranslateTransition();
 
+    }
+
+    public synchronized static Game getInstance() {
+        if (myGame == null) {
+            myGame = new Game();
+        }
+        return myGame;
     }
 
 
@@ -654,11 +663,11 @@ public class Game extends Application implements Initializable, Serializable {
     public void moveScreen(){
         //animate game objects
 
+        Iterator it = transitions1.iterator();
+
         for(int i=0;i<island.size();i++){
-            //System.out.println("@ "+transitions1.get(i).getNode());
             transitions1.get(i).setDuration(Duration.millis(300));
             transitions1.get(i).setByX(-75);
-            //System.out.print(transitions1.get(i).getByX()+" ");
             transitions1.get(i).play();
         }
         for(int i=0;i<obstacles.size();i++){
