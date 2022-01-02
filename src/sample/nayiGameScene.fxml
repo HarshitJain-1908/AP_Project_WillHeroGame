@@ -88,7 +88,7 @@
             <Font name="HP Simplified Jpan Regular" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="resurrect1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#resurrectHero" opacity="0.0" prefHeight="54.0" prefWidth="194.0" style="-fx-background-color: white; -fx-label-padding: 3; -fx-background-radius: 20; -fx-border-color: #190080; -fx-border-width: 3; -fx-border-radius: 10;" text="RESTART" textAlignment="CENTER" textFill="#190080" translateX="75.0" translateY="50.0">
+      <Label fx:id="restartbutton1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#restartGame" opacity="0.0" prefHeight="54.0" prefWidth="194.0" style="-fx-background-color: white; -fx-label-padding: 3; -fx-background-radius: 20; -fx-border-color: #190080; -fx-border-width: 3; -fx-border-radius: 10;" text="RESTART" textAlignment="CENTER" textFill="#190080" translateX="75.0" translateY="50.0">
          <font>
             <Font name="HP Simplified Jpan Regular" size="37.0" />
          </font>

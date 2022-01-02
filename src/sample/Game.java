@@ -44,7 +44,6 @@ public class Game extends Application implements Initializable, Serializable {
     private static LinkedList<CoinChest> cchest;
     private static LinkedList<WeaponChest> wchest;
     private static LinkedList<Coin> coinl;
-    private volatile static Game myGame;
 
     private static int highScore;
     private int gid;
@@ -53,7 +52,7 @@ public class Game extends Application implements Initializable, Serializable {
     @FXML
     private ImageView movebutton, restartview, resumeview, saveview, exitview;
     @FXML
-    Label score, noOfCoins, gameover, resurrect, restartbutton, resumebutton, savebutton, exiticon;
+    Label score, noOfCoins, gameover, resurrect, restartbutton, restartbutton1, resumebutton, savebutton, exiticon;
     TranslateTransition translate2=new TranslateTransition();
     @FXML
     static Button newgamebutton, loadgamebutton, highscorebutton, exitbutton, gameinstr, exitinstr;
@@ -68,7 +67,7 @@ public class Game extends Application implements Initializable, Serializable {
     private static Stage stage;
     private static Scene scene;
 
-    private Game() {
+    public Game() {
 
         island=new LinkedList<>();
         orc=new LinkedList<>(); //all orcs including boss
@@ -86,12 +85,6 @@ public class Game extends Application implements Initializable, Serializable {
 
     }
 
-    public synchronized static Game getInstance() {
-        if (myGame == null) {
-            myGame = new Game();
-        }
-        return myGame;
-    }
 
 
     private void placeGameObjects(MouseEvent event) throws IOException {
@@ -440,7 +433,7 @@ public class Game extends Application implements Initializable, Serializable {
         img.setFitHeight(75);
         img.setTranslateX(-450);
         img.setTranslateY(-90);
-        hero=new Player(s,img);
+        hero= Player.getInstance(s,img);
         //System.out.println(myhero+" hero :"+hero.getName());
         return img;
     }
@@ -606,7 +599,7 @@ public class Game extends Application implements Initializable, Serializable {
 
     public static void main(String[] args) {
         launch(args);
-        Game g=new Game();
+        Game g = new Game();
 
     }
     @Override
@@ -664,7 +657,8 @@ public class Game extends Application implements Initializable, Serializable {
     public void moveScreen(){
         //animate game objects
 
-        Iterator it = transitions1.iterator();
+        Iterator it1 = transitions1.iterator();
+        Iterator it3 = transitions3.iterator();
 
         for(int i=0;i<island.size();i++){
             transitions1.get(i).setDuration(Duration.millis(300));
@@ -765,7 +759,11 @@ public class Game extends Application implements Initializable, Serializable {
           if(status==1){
               System.out.println("1 hai");
               orc.get(i).slide(new TranslateTransition());
-              overgame(orc.get(i));
+              TranslateTransition t1 = new TranslateTransition();
+              t1.setDuration(Duration.seconds(2));
+              int finalI1 = i;
+              t1.setOnFinished(actionEvent -> orc.get(finalI1).getView().setOpacity(0));
+              //overgame(orc.get(i));
           }
 
         }
@@ -773,16 +771,14 @@ public class Game extends Application implements Initializable, Serializable {
         for (int i=0;i<obstacles.size();i++) {
            int status =  hero.CollideGameObject(obstacles.get(i), obstacles.get(i).getId());
            if (status==1){
-               heroTransition.stop();
+               //heroTransition.stop();
                obstacles.get(i).getView1().setTranslateX(obstacles.get(i).getView().getTranslateX()-65);
                obstacles.get(i).getView1().setTranslateY(obstacles.get(i).getView().getTranslateY());
                transitions3.get(i).setNode(obstacles.get(i).getView1());
-               sleep(1000);
                obstacles.get(i).getView1().setOpacity(1);
                obstacles.get(i).getView().setOpacity(0);
                //over game or choose resurrect
-               overgame(obstacles.get(i));
-               //obstacles.get(i).getView1().setOpacity(0);
+               //overgame(obstacles.get(i));
            }
         }
 
@@ -883,7 +879,10 @@ public class Game extends Application implements Initializable, Serializable {
         }
         else if(o instanceof Orc){
             resurrect.setOpacity(0.5);
+
         }
+
+        restartbutton1.setOpacity(1);
     }
     public void resurrectHero(MouseEvent e){
         gameover.setOpacity(0);

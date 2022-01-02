@@ -26,9 +26,10 @@ public class Player implements Serializable {
     private Game game;
     private Island isd;
     private ImageView me;
+    private static Player player;
 
 
-    public Player(String s, ImageView i) {
+    private Player(String s, ImageView i) {
         jumpHeight = 120;
         moveLength = 75;
         coins = 0;
@@ -38,6 +39,14 @@ public class Player implements Serializable {
         h=new Helmet();
         me=i;
     }
+
+    public synchronized static Player getInstance(String s, ImageView i) {
+        if (player == null) {
+            player = new Player(s,i);
+        }
+        return player;
+    }
+
     public void jump(TranslateTransition heroTransition){
         System.out.println("jump "+me);
         heroTransition.setNode(me);
@@ -184,7 +193,7 @@ public class Player implements Serializable {
 //                t.play();
                     i2.getView().setOpacity(0.5);
                     //t.setOnFinished(actionEvent -> i2.getView().setOpacity(0));
-                    me.setOpacity(0);
+                    //me.setOpacity(0);
                     i2.setFlag(true);
                     return 1;
                 }
