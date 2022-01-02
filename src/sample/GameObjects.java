@@ -4,7 +4,9 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-abstract public class GameObjects {
+import java.io.Serializable;
+
+abstract public class GameObjects implements Serializable {
     private Coordinates coord;
     private int id;
     private boolean flag;
@@ -47,9 +49,9 @@ abstract public class GameObjects {
         t.setAutoReverse(true);
         t.play();
     }
-    public void slide(){
+    public void slide(TranslateTransition t){
         System.out.println("slide");
-        TranslateTransition t=new TranslateTransition();
+        //TranslateTransition t=new TranslateTransition();
         t.setNode(me);
         t.setDuration(Duration.millis(1000));
         t.setByX(50);

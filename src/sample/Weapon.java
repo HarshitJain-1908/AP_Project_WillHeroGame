@@ -8,7 +8,7 @@ abstract public class Weapon {
     public Weapon(String t){
         type=t;
         WeaponActiveStatus=false;
-        lastfor=10;
+        lastfor=2;
     }
 
     public int getLastfor() {
@@ -26,5 +26,8 @@ abstract public class Weapon {
     public void setWeaponActiveStatus(boolean weaponActiveStatus) {
         WeaponActiveStatus = weaponActiveStatus;
     }
-    abstract public void useWeapon();
+    public boolean getWeaponActiveStatus(){
+        return WeaponActiveStatus;
+    }
+    abstract public void useWeapon(double x);
 }
